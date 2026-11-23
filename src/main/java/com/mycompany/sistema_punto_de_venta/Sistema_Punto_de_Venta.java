@@ -4,10 +4,7 @@
 
 package com.mycompany.sistema_punto_de_venta;
 
-/**
- *
- * @author Alej
- */
+
 public class Sistema_Punto_de_Venta {
 
     public static void main(String[] args) {
