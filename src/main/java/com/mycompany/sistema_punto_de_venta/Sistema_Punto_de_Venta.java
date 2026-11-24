@@ -20,7 +20,7 @@ public class Sistema_Punto_de_Venta {
         //Variables locales
         String Idtemp;
         
+    usuarios.add(new Cliente("efef","s","w","s","",""));   
         
-        usuarios.add(new Cliente("efef","s","w","s","",""));
     }//Fin del método registro
 }
