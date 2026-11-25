@@ -7,8 +7,8 @@ package com.mycompany.sistema_punto_de_venta;
 
 public class Admin extends Usuario {
     //Constructor con atributos de la clase usuario
-    public Admin(String id, String correo, String nombre, String telefono, String contraseña) {
-        super(id, correo, nombre, telefono, contraseña);
+    public Admin(String id, String correo, String nombre, String telefono, String contraseña, String ImagenPerfil) {
+        super(id, correo, nombre, telefono, contraseña, ImagenPerfil);
     }
     
 }

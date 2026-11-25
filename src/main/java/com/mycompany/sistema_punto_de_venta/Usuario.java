@@ -12,14 +12,16 @@ public class Usuario {
     String nombre;
     String telefono;
     String contraseña;
+    String ImagenPerfil;
     
     //Constructor con todos los atributos
-    public Usuario(String id, String correo, String nombre, String telefono, String contraseña) {
+    public Usuario(String id, String correo, String nombre, String telefono, String contraseña, String ImagenPerfil) {
         this.id = id;
         this.correo = correo;
         this.nombre = nombre;
         this.telefono = telefono;
         this.contraseña = contraseña;
+        this.ImagenPerfil = ImagenPerfil;
     }
     
     //Métodos getter

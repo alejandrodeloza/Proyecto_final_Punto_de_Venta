@@ -10,8 +10,8 @@ public class Cliente extends Usuario {
     String direcciones[];
     
     //Constructor con atributos de la clase usuario
-    public Cliente(String id, String correo, String nombre, String telefono, String contraseña) {
-        super(id, correo, nombre, telefono, contraseña);
+    public Cliente(String id, String correo, String nombre, String telefono, String contraseña, String ImagenPerfil) {
+        super(id, correo, nombre, telefono, contraseña, ImagenPerfil);
     }
     
     //Métodos getter
