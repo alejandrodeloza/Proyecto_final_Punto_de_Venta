@@ -4,10 +4,13 @@
  */
 package com.mycompany.sistema_punto_de_venta;
 
+import java.util.*;
+
 
 public class Cliente extends Usuario {
     //Atributos propios de cliente
-    String direcciones[];
+    private ArrayList <String> direcciones = new ArrayList<>();
+    private Carrito carrito = new Carrito();
     
     //Constructor con atributos de la clase usuario
     public Cliente(String id, String correo, String nombre, String telefono, String contraseña, String ImagenPerfil) {
@@ -15,13 +18,20 @@ public class Cliente extends Usuario {
     }
     
     //Métodos getter
-    public String[] getDirecciones() {
+    public ArrayList<String> getDirecciones() {
         return direcciones;
     }
+    public Carrito getCarrito() {
+        return carrito;
+    }
+    
     
     //Métodos setter
-    public void setDirecciones(String[] direcciones) {
+    public void setDirecciones(ArrayList<String> direcciones) {
         this.direcciones = direcciones;
+    }
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
     
 }

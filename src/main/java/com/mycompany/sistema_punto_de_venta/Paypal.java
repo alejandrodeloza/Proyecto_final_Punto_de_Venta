@@ -6,5 +6,31 @@ package com.mycompany.sistema_punto_de_venta;
 
 
 public class Paypal extends Pago {
+    //Atributos (Son los datos de la cuenta de PayPal del usuario)
+    private String correoPaypal;
+    private String contraseñaPaypal;
+    
+    //Constructor
+    public Paypal(String correoPaypal, String contraseñaPaypal, String idPago, String fechaPago, double monto) {
+        super(idPago, fechaPago, monto);
+        this.correoPaypal = correoPaypal;
+        this.contraseñaPaypal = contraseñaPaypal;
+    }
+    
+    //Métodos Getter
+    public String getCorreoPaypal() {
+        return correoPaypal;
+    }
+    public String getContraseñaPaypal() {
+        return contraseñaPaypal;
+    }
+    
+    //Métodos Setter
+    public void setCorreoPaypal(String correoPaypal) {
+        this.correoPaypal = correoPaypal;
+    }
+    public void setContraseñaPaypal(String contraseñaPaypal) {
+        this.contraseñaPaypal = contraseñaPaypal;
+    }
     
 }

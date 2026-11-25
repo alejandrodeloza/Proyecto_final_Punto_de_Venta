@@ -40,6 +40,10 @@ public class Usuario {
     public String getContraseña() {
         return contraseña;
     }
+    public String getImagenPerfil() {
+        return ImagenPerfil;
+    }
+    
     
     //Métodos setter
     public void setId(String id) {
@@ -56,6 +60,9 @@ public class Usuario {
     }
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+    public void setImagenPerfil(String ImagenPerfil) {
+        this.ImagenPerfil = ImagenPerfil;
     }
     
 }

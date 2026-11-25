@@ -6,5 +6,38 @@ package com.mycompany.sistema_punto_de_venta;
 
 
 public class Pago {
+    //Atributos
+    protected String idPago; //Formato: [G***]
+    protected String fechaPago;
+    protected double monto;
+    
+    //Constructor
+    public Pago(String idPago, String fechaPago, double monto) {
+        this.idPago = idPago;
+        this.fechaPago = fechaPago;
+        this.monto = monto;
+    }
+    
+    //Métodos Getter
+    public String getIdPago() {
+        return idPago;
+    }
+    public String getFechaPago() {
+        return fechaPago;
+    }
+    public double getMonto() {
+        return monto;
+    }
+    
+    //Métodos Setter
+    public void setIdPago(String idPago) {
+        this.idPago = idPago;
+    }
+    public void setFechaPago(String fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
     
 }
