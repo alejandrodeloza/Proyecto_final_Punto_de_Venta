@@ -25,6 +25,7 @@ public class Sistema_Punto_de_Venta {
         String Idtemp;//ID completo
         int Idnum;//Parte numerica del ID
         
+    //usuarios.add(new Cliente("efef","s","w","s","",""));   
         //Generar ID
         if(usuarios.isEmpty()){
             //Si es el primer usuario se toma un cero
