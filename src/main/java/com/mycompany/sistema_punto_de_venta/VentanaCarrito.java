@@ -2,7 +2,7 @@ package com.mycompany.sistema_punto_de_venta;
 /*
  * CyberVentana - ventana del carrito
  */
-// NOTA: si tu proyecto usa paquete, deja arriba tu línea "package ...;"
+
 
 /**
  * Ventana del carrito de compras de CyberVentana.
