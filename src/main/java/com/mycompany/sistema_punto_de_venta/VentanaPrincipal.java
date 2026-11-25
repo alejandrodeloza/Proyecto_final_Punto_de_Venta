@@ -1,8 +1,7 @@
-package com.mycompany.sistema_punto_de_venta;
 /*
  * CyberVentana - ventana principal
  */
-
+package com.mycompany.sistema_punto_de_venta;
 
 /**
  * Ventana principal de CyberVentana.
@@ -11,6 +10,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
         initComponents();
+        Utilidades.cargarLogo(lblLogo); //carga imagen del logo
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -25,6 +25,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         panelDerecha = new javax.swing.JPanel();
+        btnIniciarSesion = new javax.swing.JButton();
         btnCarrito = new javax.swing.JButton();
         scrollProductos = new javax.swing.JScrollPane();
         panelProductos = new javax.swing.JPanel();
@@ -86,6 +87,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
         panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 92, 184));
+        btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setText("Iniciar sesión");
+        panelDerecha.add(btnIniciarSesion);
 
         btnCarrito.setBackground(new java.awt.Color(255, 102, 0));
         btnCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -252,7 +259,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        public static void main(String args[]) {
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
     }
 
@@ -267,6 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar8;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblProducto1;
     private javax.swing.JLabel lblProducto2;

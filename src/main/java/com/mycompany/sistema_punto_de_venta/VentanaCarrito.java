@@ -11,6 +11,8 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
     public VentanaCarrito() {
         initComponents();
+        
+        Utilidades.cargarLogo(lblLogo); //carga imagen del logo
         // Hace que la rueda del ratón desplace más rápido
         scrollItems.getVerticalScrollBar().setUnitIncrement(16);
     }

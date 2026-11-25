@@ -7,6 +7,7 @@ public class VentanaPago extends javax.swing.JFrame {
 
     public VentanaPago() {
         initComponents();
+        Utilidades.cargarLogo(lblLogo); //carga imagen del logo
         // Hace que la rueda del ratón desplace más rápido
         scrollOpciones.getVerticalScrollBar().setUnitIncrement(16);
     }
