@@ -11,14 +11,20 @@ private Sistema_Punto_de_Venta sistema;
 private Usuario usuarioActivo = null;
 //variables necesarias xd 
 
-
+// Constructor vacío (crea un sistema nuevo si ejecutas esta ventana sola)
     public VentanaPrincipal() {
-        initComponents();  
-    this.sistema = sistema;
+        this(new Sistema_Punto_de_Venta());
+    }
+
+    // Constructor principal que recibe el sistema compartido
+    public VentanaPrincipal(Sistema_Punto_de_Venta sistema) {
+        initComponents();
+        this.sistema = sistema;
         Utilidades.cargarLogo(lblLogo); //carga imagen del logo
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
+   
 //para guardar el usuario 
     public void guardarUsuarioActivo(Usuario u) {
     this.usuarioActivo = u;
@@ -120,7 +126,7 @@ private Usuario usuarioActivo = null;
 
         panelProductos.setBackground(new java.awt.Color(45, 45, 45));
         panelProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panelProductos.setLayout(new java.awt.GridLayout(0, 4));
+        panelProductos.setLayout(new java.awt.GridLayout(0, 4, 15, 15));
 
         tarjeta1.setBackground(new java.awt.Color(66, 66, 66));
         tarjeta1.setPreferredSize(new java.awt.Dimension(230, 250));

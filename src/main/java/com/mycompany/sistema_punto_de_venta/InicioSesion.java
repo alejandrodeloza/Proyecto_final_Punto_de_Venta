@@ -4,6 +4,8 @@
  */
 package com.mycompany.sistema_punto_de_venta;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class InicioSesion extends javax.swing.JFrame {
     //referencias declaradas 
@@ -29,6 +31,7 @@ private VentanaPrincipal ventanaPrincipal;
         setLocationRelativeTo(null); // Centrar ventana
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); // Cierra solo esta ventana
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -42,11 +45,10 @@ private VentanaPrincipal ventanaPrincipal;
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        IniciarSesion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        Registrar = new javax.swing.JButton();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(24, 37, 52));
@@ -78,6 +80,7 @@ private VentanaPrincipal ventanaPrincipal;
 
         jTextArea2.setBackground(new java.awt.Color(25, 40, 52));
         jTextArea2.setColumns(20);
+        jTextArea2.setForeground(new java.awt.Color(9, 157, 237));
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
@@ -85,26 +88,23 @@ private VentanaPrincipal ventanaPrincipal;
         jLabel4.setForeground(new java.awt.Color(9, 157, 237));
         jLabel4.setText("Contraseña");
 
-        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea3.setBackground(new java.awt.Color(25, 40, 52));
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
-
-        jButton1.setBackground(new java.awt.Color(0, 168, 254));
-        jButton1.setForeground(new java.awt.Color(30, 42, 55));
-        jButton1.setText("Iniciar Sesion");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        IniciarSesion.setBackground(new java.awt.Color(0, 168, 254));
+        IniciarSesion.setForeground(new java.awt.Color(30, 42, 55));
+        IniciarSesion.setText("Iniciar Sesion");
+        IniciarSesion.addActionListener(this::IniciarSesionActionPerformed);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("¿Aún no tienes cuenta? ");
 
-        jButton2.setBackground(new java.awt.Color(30, 42, 55));
-        jButton2.setForeground(new java.awt.Color(9, 157, 237));
-        jButton2.setText("Registrame ahora");
-        jButton2.setBorder(null);
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        Registrar.setBackground(new java.awt.Color(30, 42, 55));
+        Registrar.setForeground(new java.awt.Color(9, 157, 237));
+        Registrar.setText("Registrame ahora");
+        Registrar.setBorder(null);
+        Registrar.addActionListener(this::RegistrarActionPerformed);
+
+        jPasswordField2.setBackground(new java.awt.Color(30, 42, 55));
+        jPasswordField2.setForeground(new java.awt.Color(9, 157, 237));
+        jPasswordField2.addActionListener(this::jPasswordField2ActionPerformed);
 
         javax.swing.GroupLayout panelFormularioLayout = new javax.swing.GroupLayout(panelFormulario);
         panelFormulario.setLayout(panelFormularioLayout);
@@ -115,25 +115,12 @@ private VentanaPrincipal ventanaPrincipal;
                 .addComponent(jLabel2)
                 .addGap(146, 146, 146))
             .addGroup(panelFormularioLayout.createSequentialGroup()
-                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelFormularioLayout.createSequentialGroup()
-                            .addGap(179, 179, 179)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelFormularioLayout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 20, Short.MAX_VALUE))
-            .addGroup(panelFormularioLayout.createSequentialGroup()
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormularioLayout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(Registrar))
                     .addGroup(panelFormularioLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel1))
@@ -141,6 +128,20 @@ private VentanaPrincipal ventanaPrincipal;
                         .addGap(88, 88, 88)
                         .addComponent(Logo)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelFormularioLayout.createSequentialGroup()
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFormularioLayout.createSequentialGroup()
+                                .addGap(179, 179, 179)
+                                .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelFormularioLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel4)))
+                        .addGap(178, 178, 178)))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         panelFormularioLayout.setVerticalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,13 +156,13 @@ private VentanaPrincipal ventanaPrincipal;
                 .addGap(39, 39, 39)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2))
+                    .addComponent(Registrar))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
@@ -174,38 +175,50 @@ private VentanaPrincipal ventanaPrincipal;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String correo = jTextArea2.getText().trim();
-    String contra = jTextArea3.getText();
 
-    if (sistema.iniciarSesion(correo, contra)) {
-        Usuario u = sistema.buscarUsuario(correo);
-        javax.swing.JOptionPane.showMessageDialog(this, "¡Bienvenido, " + u.getNombre() + "!");
 
-        if (u instanceof Admin) {
-            // Si es administrador, abre VentanaAdmin
-            VentanaAdmin admin = new VentanaAdmin();
-            admin.setVisible(true);
-            if (ventanaPrincipal != null) {
-                ventanaPrincipal.dispose();
-            }
-        } else {
-            // Si es cliente, le manda el usuario a VentanaPrincipal y cierra el login
-            if (ventanaPrincipal != null) {
-                ventanaPrincipal.guardarUsuarioActivo(u);
-            }
-        }
-        dispose();
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
-    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        java.awt.EventQueue.invokeLater(() -> new Registro().setVisible(true));
+    private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
+       String correo = jTextArea2.getText().trim();
+        String contra = new String(jPasswordField2.getPassword());
+
+        if (correo.isEmpty() || contra.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Error al completar los campos");
+            return;
+        }
+
+        if (sistema.iniciarSesion(correo, contra)) {
+            Usuario u = sistema.buscarUsuario(correo);
+            JOptionPane.showMessageDialog(this, "¡Bienvenido, " + u.getNombre() + "!");
+
+            if (u instanceof Admin) {
+                VentanaAdmin admin = new VentanaAdmin();
+                admin.setVisible(true);
+                if (ventanaPrincipal != null) {
+                    ventanaPrincipal.dispose();
+                }
+            } else {
+                if (ventanaPrincipal != null) {
+                    ventanaPrincipal.guardarUsuarioActivo(u);
+                }
+            }
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
+        }
+    }//GEN-LAST:event_IniciarSesionActionPerformed
+
+    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+        java.awt.EventQueue.invokeLater(() -> new Registro(sistema).setVisible(true));
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_RegistrarActionPerformed
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     public static void main(String args[]) {
 
@@ -227,18 +240,17 @@ private VentanaPrincipal ventanaPrincipal;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
+    private javax.swing.JButton IniciarSesion;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Registrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JPanel panelFormulario;
     // End of variables declaration//GEN-END:variables
 

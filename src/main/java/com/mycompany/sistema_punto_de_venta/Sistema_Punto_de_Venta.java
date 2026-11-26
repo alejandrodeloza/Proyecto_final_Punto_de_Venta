@@ -9,13 +9,13 @@ import java.util.regex.*;//Paquete para usar toda la clase Regex
 
 public class Sistema_Punto_de_Venta {
     //Arraylist con todos los datos del sistema
-    ArrayList <Usuario> usuarios = new ArrayList<>();
-    ArrayList <Producto> productos = new ArrayList<>();
-    ArrayList <Pedido> pedidos = new ArrayList<>();
-    ArrayList <Carrito> carritos = new ArrayList<>();
+    static ArrayList <Usuario> usuarios = new ArrayList<>();
+    static ArrayList <Producto> productos = new ArrayList<>();
+    static ArrayList <Pedido> pedidos = new ArrayList<>();
+    static ArrayList <Carrito> carritos = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new VentanaPrincipal().setVisible(true);
     }
     
     //Métodos de validación de datos
@@ -25,7 +25,6 @@ public class Sistema_Punto_de_Venta {
         String Idtemp;//ID completo
         int Idnum;//Parte numerica del ID
         
-    //usuarios.add(new Cliente("efef","s","w","s","",""));   
         //Generar ID
         if(usuarios.isEmpty()){
             //Si es el primer usuario se toma un cero
@@ -62,6 +61,9 @@ public class Sistema_Punto_de_Venta {
         //Buscar usuario
         for (Usuario u : usuarios){
             if(u.getCorreo().equals(correo) && u.getContraseña().equals(contraseña))
+                //Aqui hay que cargar el csv
+                
+                
                 //Si hay coincidencias regresa un true
                 return true;
         }
