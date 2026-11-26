@@ -329,10 +329,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
-    }
-
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         if(Sistema_Punto_de_Venta.verificarSesion()==1)
         java.awt.EventQueue.invokeLater(() -> new VentanaCarrito().setVisible(true));
