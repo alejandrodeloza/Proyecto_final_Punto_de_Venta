@@ -10,10 +10,19 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicioSesion.class.getName());
 
+    private Sistema_Punto_de_Venta sistema;
+    private VentanaPrincipal ventanaPrincipal;
 
     public VentanaInicioSesion() {
+        this(new Sistema_Punto_de_Venta(), null);
+    }
+
+    public VentanaInicioSesion(Sistema_Punto_de_Venta sistema, VentanaPrincipal ventanaPrincipal) {
         initComponents();
-        setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        this.sistema = sistema;
+        this.ventanaPrincipal = ventanaPrincipal;
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -145,10 +154,10 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CorreoTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -169,18 +178,31 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
 
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
         String correo = CorreoTextfield.getText().trim();
-        String contrasena = new String(jPasswordField2.getPassword()).trim();
+        String contra = new String(jPasswordField2.getPassword());
 
-        if (correo.isEmpty() || contrasena.isEmpty()) {
+        if (correo.isEmpty() || contra.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error al completar los campos");
-        } else {
+            return;
+        }
 
-            if (Sistema_Punto_de_Venta.iniciarSesion(correo, contrasena)) {
-                JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
-                this.dispose();
+        if (sistema.iniciarSesion(correo, contra)) {
+            Usuario u = sistema.buscarUsuario(correo);
+            JOptionPane.showMessageDialog(this, "¡Bienvenido, " + u.getNombre() + "!");
+
+            if (u instanceof Admin) {
+                VentanaAdmin admin = new VentanaAdmin();
+                admin.setVisible(true);
+                if (ventanaPrincipal != null) {
+                    ventanaPrincipal.dispose();
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+                if (ventanaPrincipal != null) {
+                    ventanaPrincipal.guardarUsuarioActivo(u);
+                }
             }
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
         }
     }//GEN-LAST:event_IniciarSesionActionPerformed
 

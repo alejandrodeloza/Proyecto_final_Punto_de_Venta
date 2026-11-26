@@ -47,6 +47,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(30, 42, 55));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));

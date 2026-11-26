@@ -319,7 +319,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         if (usuarioActivo == null) {
             // si no ha iniciado sesión, abre la ventana InicioSesion
-            InicioSesion login = new InicioSesion(sistema, this);
+            VentanaInicioSesion login = new VentanaInicioSesion(sistema, this);
             login.setVisible(true);
         } else {
             // si ya inició sesión, abre la ventana VentanaDatosCuenta
