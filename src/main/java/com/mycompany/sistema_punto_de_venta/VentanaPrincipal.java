@@ -20,15 +20,29 @@ import javax.swing.SwingConstants;
  * Ventana principal de CyberVentana.
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-     //Constructor
+    private Sistema_Punto_de_Venta sistema;
+    private Usuario usuarioActivo = null;
+
+    // Constructor vacío (crea un sistema nuevo si ejecutas esta ventana sola)
     public VentanaPrincipal() {
+        this(new Sistema_Punto_de_Venta());
+    }
+
+    // Constructor principal que recibe el sistema compartido
+    public VentanaPrincipal(Sistema_Punto_de_Venta sistema) {
         initComponents();
+        this.sistema = sistema;
         setLocationRelativeTo(null);
         cargarProductos(Sistema_Punto_de_Venta.productos);
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
-
+   
+//para guardar el usuario 
+    public void guardarUsuarioActivo(Usuario u) {
+    this.usuarioActivo = u;
+    btnIniciarSesion.setText("Mi Cuenta");
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -303,8 +317,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     //Evento boton de inicio de sesión
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        java.awt.EventQueue.invokeLater(() -> new VentanaInicioSesion().setVisible(true));
+        if (usuarioActivo == null) {
+            // si no ha iniciado sesión, abre la ventana InicioSesion
+            InicioSesion login = new InicioSesion(sistema, this);
+            login.setVisible(true);
+        } else {
+            // si ya inició sesión, abre la ventana VentanaDatosCuenta
+            VentanaDatosCuenta datos = new VentanaDatosCuenta(usuarioActivo);
+            datos.setVisible(true);
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+    }
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         if(Sistema_Punto_de_Venta.verificarSesion()==1)
@@ -338,7 +364,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             //Crear tarjeta 
             JPanel tarjeta = new JPanel();
-            tarjeta.setBackground(new Color(66, 66, 66));
+            tarjeta.setBackground(new Color(30,42,55));
             tarjeta.setPreferredSize(new Dimension(230, 250));
             tarjeta.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             tarjeta.setLayout(new BorderLayout(5, 5));

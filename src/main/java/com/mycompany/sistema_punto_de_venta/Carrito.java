@@ -55,6 +55,8 @@ public class Carrito {
         return eliminado;
     }
 
+
+
     // Quitar una sola unidad para el botón "-" en VentanaCarrito)
     public void reducirUnidad(String idProducto) {
         for (int i = 0; i < productosCarrito.size(); i++) {
@@ -88,6 +90,7 @@ public class Carrito {
 
         return false; // No se pudo aumentar (sin stock suficiente o no encontrado)
     }
+
 
 
     public double calcularTotal() {
