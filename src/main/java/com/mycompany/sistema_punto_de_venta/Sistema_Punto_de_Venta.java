@@ -18,6 +18,12 @@ public class Sistema_Punto_de_Venta {
 
     public static void main(String[] args) {
         usuarios.add(new Cliente("u", "u", "u", "u", "u", "u"));
+        usuarios.add(new Admin("a", "a", "a", "a", "a", "a"));
+        productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png."));
+        productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png."));
+        productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png."));
+        productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png."));
+        productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png."));
         new VentanaPrincipal().setVisible(true);
     }
 
@@ -78,6 +84,20 @@ public class Sistema_Punto_de_Venta {
         //No hay coincidencias regresa false
         return false;
     }//Fin del método inicio de sesión
+    
+    //Método para verificar inicio de sesión(se usa int para las tres posibilidades)
+     public static int verificarSesion() {
+        if (Sistema_Punto_de_Venta.clienteActual != null) {
+            // Cliente ya inicio
+            return 1;
+        } else if (Sistema_Punto_de_Venta.adminActual != null) {
+            // Admin inicio
+            return 2;
+        } else {
+            //No hay inicio
+            return 3;
+        }
+    }
 
     //Método para validar nombre
     public static boolean nombreValido(String nombre) {

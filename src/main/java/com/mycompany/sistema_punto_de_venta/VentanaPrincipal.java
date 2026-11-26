@@ -3,14 +3,28 @@
  */
 package com.mycompany.sistema_punto_de_venta;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 /**
  * Ventana principal de CyberVentana.
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-
+     //Constructor
     public VentanaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        cargarProductos(Sistema_Punto_de_Venta.productos);
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -100,6 +114,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCarrito.setForeground(new java.awt.Color(255, 255, 255));
         btnCarrito.setText("Carrito");
+        btnCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarritoActionPerformed(evt);
+            }
+        });
         panelDerecha.add(btnCarrito);
 
         panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
@@ -260,10 +279,94 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Evento boton de inicio de sesión
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         java.awt.EventQueue.invokeLater(() -> new VentanaInicioSesion().setVisible(true));
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        if(Sistema_Punto_de_Venta.verificarSesion()==1)
+        java.awt.EventQueue.invokeLater(() -> new VentanaCarrito().setVisible(true));
+        else{
+             JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
+        }
+    }//GEN-LAST:event_btnCarritoActionPerformed
+ 
+    public void cargarProductos(ArrayList<Producto> productos) {
+        // Elimina las tarjetas de ejemplo 
+        panelProductos.removeAll();
+
+        for (Producto p : productos) {
+            // Si el producto fue dado de baja (stock == 0), no se muestra
+            if (p.getStock() <= 0) {
+                continue;
+            }
+
+            //Crear tarjeta 
+            JPanel tarjeta = new JPanel();
+            tarjeta.setBackground(new Color(66, 66, 66));
+            tarjeta.setPreferredSize(new Dimension(230, 250));
+            tarjeta.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            tarjeta.setLayout(new BorderLayout(5, 5));
+
+            //Imagen del producto (arriba)
+            JLabel lblImagen = new JLabel();
+            lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+            if (p.getImagen() != null && !p.getImagen().isEmpty()) {
+                try {
+                    // Busca la imagen en src/main/resources
+                    java.net.URL imgUrl = getClass().getResource(p.getImagen());
+                    ImageIcon icono = (imgUrl != null) ? new ImageIcon(imgUrl) : new ImageIcon(p.getImagen());
+                    Image imgEscalada = icono.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
+                    lblImagen.setIcon(new ImageIcon(imgEscalada));
+                } catch (Exception ex) {
+                    lblImagen.setText("Sin imagen");
+                    lblImagen.setForeground(Color.LIGHT_GRAY);
+                }
+            }
+
+            //Información del objeto Producto (centro)
+            String infoHtml = "<html><center>"
+                    + p.getNombre() + "<br>"
+                    + "<span style='color:#ff6600; font-size:14px;'>$" + String.format("%.2f", p.getPrecio()) + "</span><br>"
+                    + "<span style='font-size:10px; color:#cccccc;'>Disponibles: " + p.getStock() + "</span>"
+                    + "</center></html>";
+
+            JLabel lblProducto = new JLabel(infoHtml);
+            lblProducto.setFont(new Font("Segoe UI", Font.BOLD, 15));
+            lblProducto.setForeground(Color.WHITE);
+            lblProducto.setHorizontalAlignment(SwingConstants.CENTER);
+
+            //Botón "Agregar al carrito" (abajo)
+            JButton btnAgregar = new JButton("Agregar al carrito");
+            btnAgregar.setBackground(new Color(255, 102, 0));
+            btnAgregar.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            btnAgregar.setForeground(Color.WHITE);
+            btnAgregar.setFocusPainted(false);
+
+            // Evento al presionar el botón de este producto
+            btnAgregar.addActionListener(e -> {
+                if(Sistema_Punto_de_Venta.verificarSesion()==1)
+                    JOptionPane.showMessageDialog(this, "Agregado: " + p.getNombre());
+                else{
+                     JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
+                }
+                // Aquí puedes agregar 'p' a la lista de tu VentanaCarrito
+            });
+
+            //Armar la tarjeta y añadirla al panelProductos
+            tarjeta.add(lblImagen, BorderLayout.NORTH);
+            tarjeta.add(lblProducto, BorderLayout.CENTER);
+            tarjeta.add(btnAgregar, BorderLayout.SOUTH);
+
+            panelProductos.add(tarjeta);
+        }
+
+        // Refrescar el contenedor
+        panelProductos.revalidate();
+        panelProductos.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
