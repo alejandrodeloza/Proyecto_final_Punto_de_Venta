@@ -23,9 +23,9 @@ public class VentanaCarrito extends javax.swing.JFrame {
         panelEncabezado = new javax.swing.JPanel();
         panelIzquierda = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
-        lblTitulo = new javax.swing.JLabel();
         panelDerecha = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
         scrollItems = new javax.swing.JScrollPane();
         panelContenedor = new javax.swing.JPanel();
         panelItems = new javax.swing.JPanel();
@@ -70,10 +70,10 @@ public class VentanaCarrito extends javax.swing.JFrame {
         setTitle("CyberVentana - Carrito");
         setExtendedState(6);
 
-        panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
+        panelEncabezado.setBackground(new java.awt.Color(30, 42, 55));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
+        panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
@@ -82,13 +82,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("Carrito de compras");
-        panelEncabezado.add(lblTitulo, java.awt.BorderLayout.CENTER);
-
-        panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
+        panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
         panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25));
 
         btnVolver.setBackground(new java.awt.Color(0, 92, 184));
@@ -104,27 +98,34 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
 
+        lblTitulo.setBackground(new java.awt.Color(30, 42, 55));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Carrito de compras");
+        panelEncabezado.add(lblTitulo, java.awt.BorderLayout.CENTER);
+
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelContenedor.setBackground(new java.awt.Color(45, 45, 45));
+        panelContenedor.setBackground(new java.awt.Color(22, 28, 36));
         panelContenedor.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelContenedor.setLayout(new java.awt.BorderLayout());
 
         panelItems.setBackground(new java.awt.Color(45, 45, 45));
         panelItems.setLayout(new java.awt.GridLayout(0, 1));
 
-        tarjetaItem1.setBackground(new java.awt.Color(66, 66, 66));
-        tarjetaItem1.setPreferredSize(new java.awt.Dimension(600, 80));
+        tarjetaItem1.setBackground(new java.awt.Color(30, 42, 55));
         tarjetaItem1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tarjetaItem1.setPreferredSize(new java.awt.Dimension(600, 80));
         tarjetaItem1.setLayout(new java.awt.BorderLayout());
 
         lblNombreItem1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblNombreItem1.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreItem1.setText("Producto 1");
         lblNombreItem1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombreItem1.setText("Producto 1");
         tarjetaItem1.add(lblNombreItem1, java.awt.BorderLayout.CENTER);
 
-        panelAcciones1.setBackground(new java.awt.Color(66, 66, 66));
+        panelAcciones1.setBackground(new java.awt.Color(30, 42, 55));
         panelAcciones1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnMenos1.setBackground(new java.awt.Color(0, 92, 184));
@@ -146,12 +147,17 @@ public class VentanaCarrito extends javax.swing.JFrame {
         btnMas1.setForeground(new java.awt.Color(255, 255, 255));
         btnMas1.setText("+");
         btnMas1.setPreferredSize(new java.awt.Dimension(45, 30));
+        btnMas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMas1ActionPerformed(evt);
+            }
+        });
         panelAcciones1.add(btnMas1);
 
         lblPrecioItem1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblPrecioItem1.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrecioItem1.setText("$0.00");
         lblPrecioItem1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPrecioItem1.setText("$0.00");
         lblPrecioItem1.setPreferredSize(new java.awt.Dimension(120, 30));
         panelAcciones1.add(lblPrecioItem1);
 
@@ -165,18 +171,18 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         panelItems.add(tarjetaItem1);
 
-        tarjetaItem2.setBackground(new java.awt.Color(66, 66, 66));
-        tarjetaItem2.setPreferredSize(new java.awt.Dimension(600, 80));
+        tarjetaItem2.setBackground(new java.awt.Color(30, 42, 55));
         tarjetaItem2.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tarjetaItem2.setPreferredSize(new java.awt.Dimension(600, 80));
         tarjetaItem2.setLayout(new java.awt.BorderLayout());
 
         lblNombreItem2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblNombreItem2.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreItem2.setText("Producto 2");
         lblNombreItem2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombreItem2.setText("Producto 2");
         tarjetaItem2.add(lblNombreItem2, java.awt.BorderLayout.CENTER);
 
-        panelAcciones2.setBackground(new java.awt.Color(66, 66, 66));
+        panelAcciones2.setBackground(new java.awt.Color(30, 42, 55));
         panelAcciones2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnMenos2.setBackground(new java.awt.Color(0, 92, 184));
@@ -202,8 +208,8 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         lblPrecioItem2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblPrecioItem2.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrecioItem2.setText("$0.00");
         lblPrecioItem2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPrecioItem2.setText("$0.00");
         lblPrecioItem2.setPreferredSize(new java.awt.Dimension(120, 30));
         panelAcciones2.add(lblPrecioItem2);
 
@@ -217,18 +223,18 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         panelItems.add(tarjetaItem2);
 
-        tarjetaItem3.setBackground(new java.awt.Color(66, 66, 66));
-        tarjetaItem3.setPreferredSize(new java.awt.Dimension(600, 80));
+        tarjetaItem3.setBackground(new java.awt.Color(30, 42, 55));
         tarjetaItem3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        tarjetaItem3.setPreferredSize(new java.awt.Dimension(600, 80));
         tarjetaItem3.setLayout(new java.awt.BorderLayout());
 
         lblNombreItem3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblNombreItem3.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreItem3.setText("Producto 3");
         lblNombreItem3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombreItem3.setText("Producto 3");
         tarjetaItem3.add(lblNombreItem3, java.awt.BorderLayout.CENTER);
 
-        panelAcciones3.setBackground(new java.awt.Color(66, 66, 66));
+        panelAcciones3.setBackground(new java.awt.Color(30, 42, 55));
         panelAcciones3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnMenos3.setBackground(new java.awt.Color(0, 92, 184));
@@ -275,64 +281,66 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         getContentPane().add(scrollItems, java.awt.BorderLayout.CENTER);
 
-        panelLateral.setBackground(new java.awt.Color(45, 45, 45));
+        panelLateral.setBackground(new java.awt.Color(22, 28, 36));
         panelLateral.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelLateral.setLayout(new java.awt.BorderLayout());
 
-        panelResumen.setBackground(new java.awt.Color(66, 66, 66));
-        panelResumen.setPreferredSize(new java.awt.Dimension(340, 260));
+        panelResumen.setBackground(new java.awt.Color(30, 42, 55));
         panelResumen.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        panelResumen.setPreferredSize(new java.awt.Dimension(340, 260));
         panelResumen.setLayout(new java.awt.BorderLayout());
 
-        panelTotales.setBackground(new java.awt.Color(66, 66, 66));
+        panelTotales.setBackground(new java.awt.Color(30, 42, 55));
         panelTotales.setLayout(new java.awt.GridLayout(4, 2));
 
+        lblTotalProductosTexto.setBackground(new java.awt.Color(30, 42, 55));
         lblTotalProductosTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTotalProductosTexto.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotalProductosTexto.setText("Total de productos");
         lblTotalProductosTexto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotalProductosTexto.setText("Total de productos");
         panelTotales.add(lblTotalProductosTexto);
 
         lblTotalProductosValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTotalProductosValor.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotalProductosValor.setText("$0.00");
         lblTotalProductosValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalProductosValor.setText("$0.00");
         panelTotales.add(lblTotalProductosValor);
 
         lblEnvioTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEnvioTexto.setForeground(new java.awt.Color(255, 255, 255));
-        lblEnvioTexto.setText("Costo de envío");
         lblEnvioTexto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblEnvioTexto.setText("Costo de envío");
         panelTotales.add(lblEnvioTexto);
 
         lblEnvioValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblEnvioValor.setForeground(new java.awt.Color(255, 255, 255));
-        lblEnvioValor.setText("$0.00");
         lblEnvioValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEnvioValor.setText("$0.00");
         panelTotales.add(lblEnvioValor);
 
         lblSubtotalTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSubtotalTexto.setForeground(new java.awt.Color(255, 255, 255));
-        lblSubtotalTexto.setText("Subtotal");
         lblSubtotalTexto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSubtotalTexto.setText("Subtotal");
         panelTotales.add(lblSubtotalTexto);
 
         lblSubtotalValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblSubtotalValor.setForeground(new java.awt.Color(255, 255, 255));
-        lblSubtotalValor.setText("$0.00");
         lblSubtotalValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSubtotalValor.setText("$0.00");
         panelTotales.add(lblSubtotalValor);
 
+        lblTotalTexto.setBackground(new java.awt.Color(30, 42, 55));
         lblTotalTexto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTotalTexto.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotalTexto.setText("Total (incl. IVA)");
         lblTotalTexto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotalTexto.setText("Total (incl. IVA)");
         panelTotales.add(lblTotalTexto);
 
         lblTotalValor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotalValor.setForeground(new java.awt.Color(255, 102, 0));
-        lblTotalValor.setText("$0.00");
         lblTotalValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalValor.setText("$0.00");
         panelTotales.add(lblTotalValor);
 
         panelResumen.add(panelTotales, java.awt.BorderLayout.NORTH);
@@ -354,6 +362,10 @@ public class VentanaCarrito extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnMas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMas1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMas1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;

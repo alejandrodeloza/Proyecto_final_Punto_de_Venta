@@ -71,7 +71,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CyberVentana");
 
-        panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
+        panelEncabezado.setBackground(new java.awt.Color(30, 42, 55));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
         panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
@@ -84,6 +84,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtBuscar.setBackground(new java.awt.Color(30, 42, 55));
         txtBuscar.setColumns(30);
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
@@ -100,7 +101,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
         panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 18);
         flowLayout1.setAlignOnBaseline(true);
         panelDerecha.setLayout(flowLayout1);
 
@@ -118,7 +119,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCarrito.setBackground(new java.awt.Color(255, 102, 0));
         btnCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCarrito.setForeground(new java.awt.Color(255, 255, 255));
-        btnCarrito.setText("Carrito");
+        btnCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Carrito.png"))); // NOI18N
+        btnCarrito.setMaximumSize(new java.awt.Dimension(42, 42));
+        btnCarrito.setMinimumSize(new java.awt.Dimension(42, 42));
+        btnCarrito.setPreferredSize(new java.awt.Dimension(42, 42));
         btnCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCarritoActionPerformed(evt);
@@ -126,11 +130,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         panelDerecha.add(btnCarrito);
 
-        panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
+        panelEncabezado.add(panelDerecha, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelProductos.setBackground(new java.awt.Color(28, 34, 41));
+        panelProductos.setBackground(new java.awt.Color(22, 28, 36));
         panelProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelProductos.setLayout(new java.awt.GridLayout(0, 4, 15, 15));
 
@@ -186,6 +190,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAgregar3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregar3.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar3.setText("Agregar al carrito");
+        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar3ActionPerformed(evt);
+            }
+        });
         tarjeta3.add(btnAgregar3, java.awt.BorderLayout.SOUTH);
 
         panelProductos.add(tarjeta3);
@@ -240,6 +249,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAgregar6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregar6.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar6.setText("Agregar al carrito");
+        btnAgregar6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar6ActionPerformed(evt);
+            }
+        });
         tarjeta6.add(btnAgregar6, java.awt.BorderLayout.SOUTH);
 
         panelProductos.add(tarjeta6);
@@ -303,6 +317,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void btnAgregar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar6ActionPerformed
+
+    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar3ActionPerformed
  
     public void cargarProductos(ArrayList<Producto> productos) {
         // Elimina las tarjetas de ejemplo 
