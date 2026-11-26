@@ -34,4 +34,10 @@ public class Cliente extends Usuario {
         this.carrito = carrito;
     }
     
+    //Método para agregar producto al carrito
+    
+    //Método para comprar carrito
+    
+    //Método para agregar dirección
+    
 }

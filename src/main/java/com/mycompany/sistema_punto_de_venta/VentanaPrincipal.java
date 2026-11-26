@@ -106,7 +106,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panelProductos.setBackground(new java.awt.Color(45, 45, 45));
         panelProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        panelProductos.setLayout(new java.awt.GridLayout(0, 4));
+        panelProductos.setLayout(new java.awt.GridLayout(0, 4, 15, 15));
 
         tarjeta1.setBackground(new java.awt.Color(66, 66, 66));
         tarjeta1.setPreferredSize(new java.awt.Dimension(230, 250));
