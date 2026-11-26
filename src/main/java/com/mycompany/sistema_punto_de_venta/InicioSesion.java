@@ -47,7 +47,7 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(30, 42, 55));
         jPanel2.setForeground(new java.awt.Color(24, 37, 52));
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/sistema_punto_de_venta/CyberVentana (3).png"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/CyberVentana (3).png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
