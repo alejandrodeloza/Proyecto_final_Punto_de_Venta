@@ -49,7 +49,6 @@ public class VentanaRegistro extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setExtendedState(6);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(900, 650));
 
@@ -71,6 +70,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(9, 157, 237));
         jLabel2.setText("Te damos la bienvenida");
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel3.setText("Crea una cuenta en Cyberventana llenando el siguiente formulario");
 
@@ -129,7 +129,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         TextosLayout.setHorizontalGroup(
             TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TextosLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(25, 25, 25)
                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TextosLayout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -143,24 +143,25 @@ public class VentanaRegistro extends javax.swing.JFrame {
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                                     .addComponent(jLabel9)
                                     .addComponent(jScrollPane2)))
-                            .addGroup(TextosLayout.createSequentialGroup()
-                                .addGap(218, 218, 218)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2))
                             .addComponent(jLabel5)
                             .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                                .addComponent(jScrollPane5)))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane5))
+                            .addGroup(TextosLayout.createSequentialGroup()
+                                .addGap(202, 202, 202)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)))
+                        .addContainerGap(35, Short.MAX_VALUE))))
             .addGroup(TextosLayout.createSequentialGroup()
-                .addGap(352, 352, 352)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(TextosLayout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(TextosLayout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jLabel3)))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TextosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(188, 188, 188))
         );
         TextosLayout.setVerticalGroup(
             TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,9 +188,9 @@ public class VentanaRegistro extends javax.swing.JFrame {
                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(51, 51, 51)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         Fondo.add(Textos, new java.awt.GridBagConstraints());

@@ -70,38 +70,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CyberVentana");
-        setExtendedState(6);
 
         panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
+        panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
         Logo.setPreferredSize(new java.awt.Dimension(300, 70));
         panelIzquierda.add(Logo);
 
+        txtBuscar.setBackground(new java.awt.Color(30, 42, 55));
         txtBuscar.setColumns(30);
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
         panelIzquierda.add(txtBuscar);
 
-        btnBuscar.setBackground(new java.awt.Color(0, 92, 184));
+        btnBuscar.setBackground(new java.awt.Color(0, 168, 254));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setForeground(new java.awt.Color(30, 42, 55));
         btnBuscar.setText("Buscar");
         panelIzquierda.add(btnBuscar);
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
-        panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
+        panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25);
         flowLayout1.setAlignOnBaseline(true);
         panelDerecha.setLayout(flowLayout1);
 
-        btnIniciarSesion.setBackground(new java.awt.Color(0, 92, 184));
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 168, 254));
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setForeground(new java.awt.Color(30, 42, 55));
         btnIniciarSesion.setText("Iniciar sesión");
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +130,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelProductos.setBackground(new java.awt.Color(45, 45, 45));
+        panelProductos.setBackground(new java.awt.Color(28, 34, 41));
         panelProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelProductos.setLayout(new java.awt.GridLayout(0, 4, 15, 15));
 
@@ -133,6 +138,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tarjeta1.setPreferredSize(new java.awt.Dimension(230, 250));
         tarjeta1.setLayout(new java.awt.BorderLayout());
 
+        lblProducto1.setBackground(new java.awt.Color(30, 42, 55));
         lblProducto1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblProducto1.setForeground(new java.awt.Color(255, 255, 255));
         lblProducto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -141,7 +147,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar1.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar1.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar1.setText("Agregar al carrito");
         tarjeta1.add(btnAgregar1, java.awt.BorderLayout.SOUTH);
 
@@ -151,6 +157,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tarjeta2.setPreferredSize(new java.awt.Dimension(230, 250));
         tarjeta2.setLayout(new java.awt.BorderLayout());
 
+        lblProducto2.setBackground(new java.awt.Color(30, 42, 55));
         lblProducto2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblProducto2.setForeground(new java.awt.Color(255, 255, 255));
         lblProducto2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -159,7 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar2.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar2.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar2.setText("Agregar al carrito");
         tarjeta2.add(btnAgregar2, java.awt.BorderLayout.SOUTH);
 
@@ -177,7 +184,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar3.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar3.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar3.setText("Agregar al carrito");
         tarjeta3.add(btnAgregar3, java.awt.BorderLayout.SOUTH);
 
@@ -195,7 +202,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar4.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar4.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar4.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar4.setText("Agregar al carrito");
         tarjeta4.add(btnAgregar4, java.awt.BorderLayout.SOUTH);
 
@@ -213,7 +220,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar5.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar5.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar5.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar5.setText("Agregar al carrito");
         tarjeta5.add(btnAgregar5, java.awt.BorderLayout.SOUTH);
 
@@ -231,7 +238,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar6.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar6.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar6.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar6.setText("Agregar al carrito");
         tarjeta6.add(btnAgregar6, java.awt.BorderLayout.SOUTH);
 
@@ -249,7 +256,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar7.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar7.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar7.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar7.setText("Agregar al carrito");
         tarjeta7.add(btnAgregar7, java.awt.BorderLayout.SOUTH);
 
@@ -267,7 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         btnAgregar8.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar8.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar8.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar8.setText("Agregar al carrito");
         tarjeta8.add(btnAgregar8, java.awt.BorderLayout.SOUTH);
 
@@ -292,6 +299,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
         }
     }//GEN-LAST:event_btnCarritoActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
  
     public void cargarProductos(ArrayList<Producto> productos) {
         // Elimina las tarjetas de ejemplo 
