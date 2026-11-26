@@ -71,7 +71,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CyberVentana");
 
-        panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
+        panelEncabezado.setBackground(new java.awt.Color(30, 42, 55));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
         panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
@@ -94,7 +94,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnBuscar.setBackground(new java.awt.Color(0, 168, 254));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(30, 42, 55));
-        btnBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Busqueda_icon2.png"))); // NOI18N
+        btnBuscar.setPreferredSize(new java.awt.Dimension(43, 43));
         panelIzquierda.add(btnBuscar);
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
@@ -316,7 +317,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
             //Crear tarjeta 
             JPanel tarjeta = new JPanel();
-            tarjeta.setBackground(new Color(66, 66, 66));
+            tarjeta.setBackground(new Color(30,42,55));
             tarjeta.setPreferredSize(new Dimension(230, 250));
             tarjeta.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
             tarjeta.setLayout(new BorderLayout(5, 5));

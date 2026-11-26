@@ -27,7 +27,7 @@
     <Container class="javax.swing.JPanel" name="panelEncabezado">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="21" green="21" red="21" type="rgb"/>
+          <Color blue="37" green="2a" red="1e" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -89,7 +89,12 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="37" green="2a" red="1e" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Busqueda_icon2.png"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[43, 43]"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
