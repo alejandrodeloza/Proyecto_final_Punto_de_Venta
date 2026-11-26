@@ -3,15 +3,27 @@
  */
 package com.mycompany.sistema_punto_de_venta;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 /**
  * Ventana principal de CyberVentana.
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-private Sistema_Punto_de_Venta sistema;
-private Usuario usuarioActivo = null;
-//variables necesarias xd 
+    private Sistema_Punto_de_Venta sistema;
+    private Usuario usuarioActivo = null;
 
-// Constructor vacío (crea un sistema nuevo si ejecutas esta ventana sola)
+    // Constructor vacío (crea un sistema nuevo si ejecutas esta ventana sola)
     public VentanaPrincipal() {
         this(new Sistema_Punto_de_Venta());
     }
@@ -20,7 +32,8 @@ private Usuario usuarioActivo = null;
     public VentanaPrincipal(Sistema_Punto_de_Venta sistema) {
         initComponents();
         this.sistema = sistema;
-        Utilidades.cargarLogo(lblLogo); //carga imagen del logo
+        setLocationRelativeTo(null);
+        cargarProductos(Sistema_Punto_de_Venta.productos);
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -36,7 +49,7 @@ private Usuario usuarioActivo = null;
 
         panelEncabezado = new javax.swing.JPanel();
         panelIzquierda = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         panelDerecha = new javax.swing.JPanel();
@@ -71,41 +84,43 @@ private Usuario usuarioActivo = null;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CyberVentana");
-        setExtendedState(6);
 
         panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
+        panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        lblLogo.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblLogo.setForeground(new java.awt.Color(0, 92, 184));
-        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setText("CyberVentana");
-        lblLogo.setOpaque(true);
-        lblLogo.setPreferredSize(new java.awt.Dimension(180, 50));
-        panelIzquierda.add(lblLogo);
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
+        Logo.setPreferredSize(new java.awt.Dimension(300, 70));
+        panelIzquierda.add(Logo);
 
-        txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscar.setBackground(new java.awt.Color(30, 42, 55));
         txtBuscar.setColumns(30);
+        txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
         panelIzquierda.add(txtBuscar);
 
-        btnBuscar.setBackground(new java.awt.Color(0, 92, 184));
+        btnBuscar.setBackground(new java.awt.Color(0, 168, 254));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setForeground(new java.awt.Color(30, 42, 55));
         btnBuscar.setText("Buscar");
         panelIzquierda.add(btnBuscar);
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
-        panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
-        panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25);
+        flowLayout1.setAlignOnBaseline(true);
+        panelDerecha.setLayout(flowLayout1);
 
-        btnIniciarSesion.setBackground(new java.awt.Color(0, 92, 184));
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 168, 254));
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarSesion.setForeground(new java.awt.Color(30, 42, 55));
         btnIniciarSesion.setText("Iniciar sesión");
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,13 +133,18 @@ private Usuario usuarioActivo = null;
         btnCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCarrito.setForeground(new java.awt.Color(255, 255, 255));
         btnCarrito.setText("Carrito");
+        btnCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarritoActionPerformed(evt);
+            }
+        });
         panelDerecha.add(btnCarrito);
 
         panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
 
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelProductos.setBackground(new java.awt.Color(45, 45, 45));
+        panelProductos.setBackground(new java.awt.Color(28, 34, 41));
         panelProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelProductos.setLayout(new java.awt.GridLayout(0, 4, 15, 15));
 
@@ -132,6 +152,7 @@ private Usuario usuarioActivo = null;
         tarjeta1.setPreferredSize(new java.awt.Dimension(230, 250));
         tarjeta1.setLayout(new java.awt.BorderLayout());
 
+        lblProducto1.setBackground(new java.awt.Color(30, 42, 55));
         lblProducto1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblProducto1.setForeground(new java.awt.Color(255, 255, 255));
         lblProducto1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -140,7 +161,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar1.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar1.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar1.setText("Agregar al carrito");
         tarjeta1.add(btnAgregar1, java.awt.BorderLayout.SOUTH);
 
@@ -150,6 +171,7 @@ private Usuario usuarioActivo = null;
         tarjeta2.setPreferredSize(new java.awt.Dimension(230, 250));
         tarjeta2.setLayout(new java.awt.BorderLayout());
 
+        lblProducto2.setBackground(new java.awt.Color(30, 42, 55));
         lblProducto2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lblProducto2.setForeground(new java.awt.Color(255, 255, 255));
         lblProducto2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -158,7 +180,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar2.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar2.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar2.setText("Agregar al carrito");
         tarjeta2.add(btnAgregar2, java.awt.BorderLayout.SOUTH);
 
@@ -176,7 +198,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar3.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar3.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar3.setText("Agregar al carrito");
         tarjeta3.add(btnAgregar3, java.awt.BorderLayout.SOUTH);
 
@@ -194,7 +216,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar4.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar4.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar4.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar4.setText("Agregar al carrito");
         tarjeta4.add(btnAgregar4, java.awt.BorderLayout.SOUTH);
 
@@ -212,7 +234,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar5.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar5.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar5.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar5.setText("Agregar al carrito");
         tarjeta5.add(btnAgregar5, java.awt.BorderLayout.SOUTH);
 
@@ -230,7 +252,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar6.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar6.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar6.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar6.setText("Agregar al carrito");
         tarjeta6.add(btnAgregar6, java.awt.BorderLayout.SOUTH);
 
@@ -248,7 +270,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar7.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar7.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar7.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar7.setText("Agregar al carrito");
         tarjeta7.add(btnAgregar7, java.awt.BorderLayout.SOUTH);
 
@@ -266,7 +288,7 @@ private Usuario usuarioActivo = null;
 
         btnAgregar8.setBackground(new java.awt.Color(255, 102, 0));
         btnAgregar8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAgregar8.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar8.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar8.setText("Agregar al carrito");
         tarjeta8.add(btnAgregar8, java.awt.BorderLayout.SOUTH);
 
@@ -278,25 +300,113 @@ private Usuario usuarioActivo = null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    //Evento boton de inicio de sesión
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        // TODO add your handling code here:
         if (usuarioActivo == null) {
-        // si no ha iniciado sesión, abre la ventana InicioSesion
-        InicioSesion login = new InicioSesion(sistema, this);
-        login.setVisible(true);
-    } else {
-        // si ya inició sesión, abre la ventana DatosCuenta
-        DatosCuenta datos = new DatosCuenta(usuarioActivo);
-        datos.setVisible(true);
-    }
+            // si no ha iniciado sesión, abre la ventana InicioSesion
+            InicioSesion login = new InicioSesion(sistema, this);
+            login.setVisible(true);
+        } else {
+            // si ya inició sesión, abre la ventana DatosCuenta
+            DatosCuenta datos = new DatosCuenta(usuarioActivo);
+            datos.setVisible(true);
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
     }
 
+    private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
+        if(Sistema_Punto_de_Venta.verificarSesion()==1)
+        java.awt.EventQueue.invokeLater(() -> new VentanaCarrito().setVisible(true));
+        else{
+             JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
+        }
+    }//GEN-LAST:event_btnCarritoActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+ 
+    public void cargarProductos(ArrayList<Producto> productos) {
+        // Elimina las tarjetas de ejemplo 
+        panelProductos.removeAll();
+
+        for (Producto p : productos) {
+            // Si el producto fue dado de baja (stock == 0), no se muestra
+            if (p.getStock() <= 0) {
+                continue;
+            }
+
+            //Crear tarjeta 
+            JPanel tarjeta = new JPanel();
+            tarjeta.setBackground(new Color(66, 66, 66));
+            tarjeta.setPreferredSize(new Dimension(230, 250));
+            tarjeta.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            tarjeta.setLayout(new BorderLayout(5, 5));
+
+            //Imagen del producto (arriba)
+            JLabel lblImagen = new JLabel();
+            lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+            if (p.getImagen() != null && !p.getImagen().isEmpty()) {
+                try {
+                    // Busca la imagen en src/main/resources
+                    java.net.URL imgUrl = getClass().getResource(p.getImagen());
+                    ImageIcon icono = (imgUrl != null) ? new ImageIcon(imgUrl) : new ImageIcon(p.getImagen());
+                    Image imgEscalada = icono.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
+                    lblImagen.setIcon(new ImageIcon(imgEscalada));
+                } catch (Exception ex) {
+                    lblImagen.setText("Sin imagen");
+                    lblImagen.setForeground(Color.LIGHT_GRAY);
+                }
+            }
+
+            //Información del objeto Producto (centro)
+            String infoHtml = "<html><center>"
+                    + p.getNombre() + "<br>"
+                    + "<span style='color:#ff6600; font-size:14px;'>$" + String.format("%.2f", p.getPrecio()) + "</span><br>"
+                    + "<span style='font-size:10px; color:#cccccc;'>Disponibles: " + p.getStock() + "</span>"
+                    + "</center></html>";
+
+            JLabel lblProducto = new JLabel(infoHtml);
+            lblProducto.setFont(new Font("Segoe UI", Font.BOLD, 15));
+            lblProducto.setForeground(Color.WHITE);
+            lblProducto.setHorizontalAlignment(SwingConstants.CENTER);
+
+            //Botón "Agregar al carrito" (abajo)
+            JButton btnAgregar = new JButton("Agregar al carrito");
+            btnAgregar.setBackground(new Color(255, 102, 0));
+            btnAgregar.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            btnAgregar.setForeground(Color.WHITE);
+            btnAgregar.setFocusPainted(false);
+
+            // Evento al presionar el botón de este producto
+            btnAgregar.addActionListener(e -> {
+                if(Sistema_Punto_de_Venta.verificarSesion()==1)
+                    JOptionPane.showMessageDialog(this, "Agregado: " + p.getNombre());
+                else{
+                     JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
+                }
+                // Aquí puedes agregar 'p' a la lista de tu VentanaCarrito
+            });
+
+            //Armar la tarjeta y añadirla al panelProductos
+            tarjeta.add(lblImagen, BorderLayout.NORTH);
+            tarjeta.add(lblProducto, BorderLayout.CENTER);
+            tarjeta.add(btnAgregar, BorderLayout.SOUTH);
+
+            panelProductos.add(tarjeta);
+        }
+
+        // Refrescar el contenedor
+        panelProductos.revalidate();
+        panelProductos.repaint();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Logo;
     private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
@@ -308,7 +418,6 @@ private Usuario usuarioActivo = null;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCarrito;
     private javax.swing.JButton btnIniciarSesion;
-    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblProducto1;
     private javax.swing.JLabel lblProducto2;
     private javax.swing.JLabel lblProducto3;

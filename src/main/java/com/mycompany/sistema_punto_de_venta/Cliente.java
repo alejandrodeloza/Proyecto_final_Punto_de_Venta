@@ -16,6 +16,7 @@ public class Cliente extends Usuario {
     public Cliente(String id, String correo, String nombre, String telefono, String contraseña, String ImagenPerfil) {
         super(id, correo, nombre, telefono, contraseña, ImagenPerfil);
     }
+    //Constructor vacio
     
     //Métodos getter
     public ArrayList<String> getDirecciones() {
@@ -47,7 +48,21 @@ public class Cliente extends Usuario {
         return false; // No alcanza el stock
     }
     //Método para comprar carrito
-    
+     public boolean comprarCarrito() {
+        if (carrito.getProductosCarrito().isEmpty()) {
+            return false;
+        }
+        // Descontar stock de cada producto comprado
+        for (Producto p : carrito.getProductosCarrito()) {
+            p.reducirStock(1);
+        }
+        carrito.vaciarCarrito();
+        return true;
+    }
     //Método para agregar dirección
-    
+    public void agregarDireccion(String direccion) {
+        if (direccion != null && !direccion.trim().isEmpty()) {
+            direcciones.add(direccion);
+        }
+    }
 }

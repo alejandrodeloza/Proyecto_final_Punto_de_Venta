@@ -5,7 +5,7 @@
 package com.mycompany.sistema_punto_de_venta;
 
 
-public class Pago {
+public abstract class Pago {
     //Atributos
     protected String idPago; //Formato: [G***]
     protected String fechaPago;
@@ -40,4 +40,6 @@ public class Pago {
         this.monto = monto;
     }
     
+    //Método de pago (polimorfismo)
+    public abstract boolean procesarPago();
 }

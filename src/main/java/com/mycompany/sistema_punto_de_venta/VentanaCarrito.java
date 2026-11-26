@@ -11,8 +11,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
     public VentanaCarrito() {
         initComponents();
-        
-        Utilidades.cargarLogo(lblLogo); //carga imagen del logo
+        setLocationRelativeTo(null);
         // Hace que la rueda del ratón desplace más rápido
         scrollItems.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -23,7 +22,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         panelEncabezado = new javax.swing.JPanel();
         panelIzquierda = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         panelDerecha = new javax.swing.JPanel();
         btnVolver = new javax.swing.JButton();
@@ -77,30 +76,30 @@ public class VentanaCarrito extends javax.swing.JFrame {
         panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        lblLogo.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblLogo.setForeground(new java.awt.Color(0, 92, 184));
-        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setText("CyberVentana");
-        lblLogo.setOpaque(true);
-        lblLogo.setPreferredSize(new java.awt.Dimension(180, 50));
-        panelIzquierda.add(lblLogo);
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
+        Logo.setPreferredSize(new java.awt.Dimension(300, 70));
+        panelIzquierda.add(Logo);
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Carrito de compras");
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Carrito de compras");
         panelEncabezado.add(lblTitulo, java.awt.BorderLayout.CENTER);
 
         panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
-        panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25));
 
         btnVolver.setBackground(new java.awt.Color(0, 92, 184));
         btnVolver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Seguir comprando");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
         panelDerecha.add(btnVolver);
 
         panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
@@ -352,11 +351,12 @@ public class VentanaCarrito extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new VentanaCarrito().setVisible(true));
-    }
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Logo;
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnEliminar2;
     private javax.swing.JButton btnEliminar3;
@@ -373,7 +373,6 @@ public class VentanaCarrito extends javax.swing.JFrame {
     private javax.swing.JLabel lblCantidad3;
     private javax.swing.JLabel lblEnvioTexto;
     private javax.swing.JLabel lblEnvioValor;
-    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreItem1;
     private javax.swing.JLabel lblNombreItem2;
     private javax.swing.JLabel lblNombreItem3;

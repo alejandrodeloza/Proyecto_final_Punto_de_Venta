@@ -13,7 +13,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
     public VentanaAdmin() {
         initComponents();
-        Utilidades.cargarLogo(lblLogo);//carga imagen del logo
+        setLocationRelativeTo(null);
         // Colores del encabezado de la tabla y del área de scroll
         tablaProductos.getTableHeader().setBackground(new java.awt.Color(0, 92, 184));
         tablaProductos.getTableHeader().setForeground(java.awt.Color.WHITE);
@@ -28,7 +28,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         panelEncabezado = new javax.swing.JPanel();
         panelIzquierda = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         panelDerecha = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
@@ -61,21 +61,16 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        lblLogo.setBackground(new java.awt.Color(255, 255, 255));
-        lblLogo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblLogo.setForeground(new java.awt.Color(0, 92, 184));
-        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogo.setText("CyberVentana");
-        lblLogo.setOpaque(true);
-        lblLogo.setPreferredSize(new java.awt.Dimension(180, 50));
-        panelIzquierda.add(lblLogo);
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
+        Logo.setPreferredSize(new java.awt.Dimension(300, 70));
+        panelIzquierda.add(Logo);
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Panel de administración");
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Panel de administración");
         panelEncabezado.add(lblTitulo, java.awt.BorderLayout.CENTER);
 
         panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
@@ -247,18 +242,14 @@ public class VentanaAdmin extends javax.swing.JFrame {
         }
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new VentanaAdmin().setVisible(true));
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Logo;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnQuitar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel lblAgregar;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblExistencias;
-    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblTitulo;

@@ -73,4 +73,13 @@ public class Producto {
         this.imagen = imagen;
     }
     
+    //Método para reducir el stock(el parametro es el numero que se reduce)
+    public void reducirStock(int cantidad){
+        stock -= cantidad;
+    }
+    
+    //Método para aumentar el stock(el parametro es el numero que se aumenta)
+    public void aumentarStock(int cantidad){
+        stock += cantidad;
+    }
 }
