@@ -10,13 +10,15 @@ package com.mycompany.sistema_punto_de_venta;
  */
 public class VentanaRegistro extends javax.swing.JFrame {
     
-
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaRegistro.class.getName());
+    // Atributo para conectar con la lista de usuarios del sistema
+    private Sistema_Punto_de_Venta sistema;
     /**
      * Creates new form Registro
      */
     public VentanaRegistro() {
-        initComponents();
-        setLocationRelativeTo(null);
+       
+        this(new Sistema_Punto_de_Venta());
     }
 
     /**
@@ -35,22 +37,17 @@ public class VentanaRegistro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 650));
 
         jPanel1.setBackground(new java.awt.Color(30, 42, 55));
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
@@ -59,8 +56,6 @@ public class VentanaRegistro extends javax.swing.JFrame {
         Fondo.setLayout(new java.awt.GridBagLayout());
 
         Textos.setBackground(new java.awt.Color(30, 42, 55));
-        Textos.setMinimumSize(new java.awt.Dimension(830, 560));
-        Textos.setPreferredSize(new java.awt.Dimension(830, 560));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -72,36 +67,16 @@ public class VentanaRegistro extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Crea una cuenta en Cyberventana llenando el siguiente formulario");
 
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(9, 157, 237));
         jLabel4.setText("Correo electrónico");
 
-        jScrollPane3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea1.setBackground(new java.awt.Color(25, 40, 52));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
-
         jLabel5.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(9, 157, 237));
         jLabel5.setText("Nombre");
-
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea2.setBackground(new java.awt.Color(25, 40, 52));
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea3.setBackground(new java.awt.Color(25, 40, 52));
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane4.setViewportView(jTextArea3);
 
         jLabel6.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(9, 157, 237));
@@ -111,25 +86,32 @@ public class VentanaRegistro extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(9, 157, 237));
         jLabel9.setText("Confirmar Contraseña");
 
-        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea4.setBackground(new java.awt.Color(25, 40, 52));
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane5.setViewportView(jTextArea4);
-
         jButton1.setBackground(new java.awt.Color(0, 168, 254));
         jButton1.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(30, 42, 55));
         jButton1.setText("Crear cuenta");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
+        jTextField1.setBackground(new java.awt.Color(25, 40, 52));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
+
+        jTextField2.setBackground(new java.awt.Color(25, 40, 52));
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jTextField3.setBackground(new java.awt.Color(25, 40, 52));
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jTextField4.setBackground(new java.awt.Color(25, 40, 52));
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField4.addActionListener(this::jTextField4ActionPerformed);
+
         javax.swing.GroupLayout TextosLayout = new javax.swing.GroupLayout(Textos);
         Textos.setLayout(TextosLayout);
         TextosLayout.setHorizontalGroup(
             TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TextosLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(TextosLayout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -137,31 +119,30 @@ public class VentanaRegistro extends javax.swing.JFrame {
                     .addGroup(TextosLayout.createSequentialGroup()
                         .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(TextosLayout.createSequentialGroup()
-                                .addGap(435, 435, 435)
+                                .addGap(218, 218, 218)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel5)
+                            .addGroup(TextosLayout.createSequentialGroup()
+                                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(99, 99, 99)
                                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                                     .addComponent(jLabel9)
-                                    .addComponent(jScrollPane2)))
-                            .addComponent(jLabel5)
-                            .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                                .addComponent(jScrollPane5))
-                            .addGroup(TextosLayout.createSequentialGroup()
-                                .addGap(202, 202, 202)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)))
-                        .addContainerGap(35, Short.MAX_VALUE))))
+                                    .addComponent(jTextField2)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))))
+                        .addContainerGap(30, Short.MAX_VALUE))))
             .addGroup(TextosLayout.createSequentialGroup()
-                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TextosLayout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(TextosLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jLabel3)))
+                .addGap(352, 352, 352)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TextosLayout.createSequentialGroup()
+                .addContainerGap(192, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(188, 188, 188))
         );
         TextosLayout.setVerticalGroup(
             TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,19 +159,19 @@ public class VentanaRegistro extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jTextField2))
                 .addGap(80, 80, 80)
                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jTextField4))
+                .addGap(50, 50, 50)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         Fondo.add(Textos, new java.awt.GridBagConstraints());
@@ -203,9 +184,97 @@ public class VentanaRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+                                                
+        // 1. Leer lo que escribió el usuario en cada cuadro
+        String nombre = jTextField1.getText().trim();
+        String correo = jTextField2.getText().trim();
+        String contra = jTextField3.getText();
+        String confirmar = jTextField4.getText();
+
+        // 2. Validar nombre
+        if (!Sistema_Punto_de_Venta.nombreValido(nombre)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nombre inválido (solo letras y espacios).");
+            return;
+        }
+
+        // 3. Validar correo y que no esté repetido
+        if (!Sistema_Punto_de_Venta.correoValido(correo)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Correo electrónico inválido.");
+            return;
+        }
+        if (!sistema.correoUnico(correo)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ese correo ya está registrado.");
+            return;
+        }
+
+        // 4. Validar contraseña y confirmación
+        if (!Sistema_Punto_de_Venta.contrasenaValida(contra)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula, un número y un símbolo (@$!%*?&.).");
+            return;
+        }
+        if (!contra.equals(confirmar)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
+            return;
+        }
+
+        // 5. Pedir teléfono de 10 dígitos
+        String telefono = javax.swing.JOptionPane.showInputDialog(this, "Ingresa tu teléfono (10 dígitos):");
+        if (telefono == null || !Sistema_Punto_de_Venta.telefonoValido(telefono.trim())) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El teléfono debe tener 10 números.");
+            return;
+        }
+        if (!sistema.telefonoUnico(telefono.trim())) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ese teléfono ya está registrado.");
+            return;
+        }
+
+        // 6. Guardar el nuevo cliente y cerrar esta ventana
+        sistema.registrarUsuario(correo, nombre, telefono.trim(), contra, "default.png", false);
+        javax.swing.JOptionPane.showMessageDialog(this, "¡Cuenta creada con éxito!");
+        dispose();
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new VentanaRegistro().setVisible(true));
+    }
+    
+    public VentanaRegistro(Sistema_Punto_de_Venta sistema) {
+        initComponents();
+        this.sistema = sistema;
+        setLocationRelativeTo(null);
+        // DISPOSE_ON_CLOSE cierra solo VentanaRegistro sin apagar todo el programa
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
@@ -219,13 +288,9 @@ public class VentanaRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

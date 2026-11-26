@@ -20,15 +20,29 @@ import javax.swing.SwingConstants;
  * Ventana principal de CyberVentana.
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-     //Constructor
+    private Sistema_Punto_de_Venta sistema;
+    private Usuario usuarioActivo = null;
+
+    // Constructor vacío (crea un sistema nuevo si ejecutas esta ventana sola)
     public VentanaPrincipal() {
+        this(new Sistema_Punto_de_Venta());
+    }
+
+    // Constructor principal que recibe el sistema compartido
+    public VentanaPrincipal(Sistema_Punto_de_Venta sistema) {
         initComponents();
+        this.sistema = sistema;
         setLocationRelativeTo(null);
         cargarProductos(Sistema_Punto_de_Venta.productos);
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
-
+   
+//para guardar el usuario 
+    public void guardarUsuarioActivo(Usuario u) {
+    this.usuarioActivo = u;
+    btnIniciarSesion.setText("Mi Cuenta");
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,6 +98,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtBuscar.setBackground(new java.awt.Color(30, 42, 55));
         txtBuscar.setColumns(30);
         txtBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
@@ -101,7 +116,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
         panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25);
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 18);
         flowLayout1.setAlignOnBaseline(true);
         panelDerecha.setLayout(flowLayout1);
 
@@ -119,7 +134,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnCarrito.setBackground(new java.awt.Color(255, 102, 0));
         btnCarrito.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCarrito.setForeground(new java.awt.Color(255, 255, 255));
-        btnCarrito.setText("Carrito");
+        btnCarrito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Carrito.png"))); // NOI18N
+        btnCarrito.setMaximumSize(new java.awt.Dimension(42, 42));
+        btnCarrito.setMinimumSize(new java.awt.Dimension(42, 42));
+        btnCarrito.setPreferredSize(new java.awt.Dimension(42, 42));
         btnCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCarritoActionPerformed(evt);
@@ -127,11 +145,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         panelDerecha.add(btnCarrito);
 
-        panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
+        panelEncabezado.add(panelDerecha, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelProductos.setBackground(new java.awt.Color(28, 34, 41));
+        panelProductos.setBackground(new java.awt.Color(22, 28, 36));
         panelProductos.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelProductos.setLayout(new java.awt.GridLayout(0, 4, 15, 15));
 
@@ -187,6 +205,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAgregar3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregar3.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar3.setText("Agregar al carrito");
+        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar3ActionPerformed(evt);
+            }
+        });
         tarjeta3.add(btnAgregar3, java.awt.BorderLayout.SOUTH);
 
         panelProductos.add(tarjeta3);
@@ -241,6 +264,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnAgregar6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregar6.setForeground(new java.awt.Color(28, 34, 41));
         btnAgregar6.setText("Agregar al carrito");
+        btnAgregar6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar6ActionPerformed(evt);
+            }
+        });
         tarjeta6.add(btnAgregar6, java.awt.BorderLayout.SOUTH);
 
         panelProductos.add(tarjeta6);
@@ -290,8 +318,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     //Evento boton de inicio de sesión
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        java.awt.EventQueue.invokeLater(() -> new VentanaInicioSesion().setVisible(true));
+        if (usuarioActivo == null) {
+            // si no ha iniciado sesión, abre la ventana InicioSesion
+            VentanaInicioSesion login = new VentanaInicioSesion(sistema, this);
+            login.setVisible(true);
+        } else {
+            // si ya inició sesión, abre la ventana VentanaDatosCuenta
+            VentanaDatosCuenta datos = new VentanaDatosCuenta(usuarioActivo);
+            datos.setVisible(true);
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+    }
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
         if(Sistema_Punto_de_Venta.verificarSesion()==1)
@@ -304,6 +344,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void btnAgregar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar6ActionPerformed
+
+    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar3ActionPerformed
  
     public void cargarProductos(ArrayList<Producto> productos) {
         // Elimina las tarjetas de ejemplo 
