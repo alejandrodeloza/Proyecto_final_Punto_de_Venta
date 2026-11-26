@@ -34,9 +34,12 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Registrar = new javax.swing.JButton();
         jPasswordField2 = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(24, 37, 52));
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(30, 42, 55));
         jPanel2.setForeground(new java.awt.Color(24, 37, 52));
@@ -48,8 +51,8 @@ public class InicioSesion extends javax.swing.JFrame {
 
         panelFormulario.setBackground(new java.awt.Color(30, 42, 55));
         panelFormulario.setForeground(new java.awt.Color(60, 63, 65));
-        panelFormulario.setMinimumSize(new java.awt.Dimension(500, 500));
-        panelFormulario.setPreferredSize(new java.awt.Dimension(500, 500));
+        panelFormulario.setMinimumSize(new java.awt.Dimension(730, 542));
+        panelFormulario.setPreferredSize(new java.awt.Dimension(730, 542));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
 
@@ -74,6 +77,7 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel4.setText("Contraseña");
 
         IniciarSesion.setBackground(new java.awt.Color(0, 168, 254));
+        IniciarSesion.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         IniciarSesion.setForeground(new java.awt.Color(30, 42, 55));
         IniciarSesion.setText("Iniciar Sesion");
         IniciarSesion.addActionListener(this::IniciarSesionActionPerformed);
@@ -91,48 +95,57 @@ public class InicioSesion extends javax.swing.JFrame {
         jPasswordField2.setForeground(new java.awt.Color(9, 157, 237));
         jPasswordField2.addActionListener(this::jPasswordField2ActionPerformed);
 
+        jButton1.setBackground(new java.awt.Color(30, 42, 55));
+        jButton1.setForeground(new java.awt.Color(9, 157, 237));
+        jButton1.setText("← Regresar");
+        jButton1.setBorderPainted(false);
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
         javax.swing.GroupLayout panelFormularioLayout = new javax.swing.GroupLayout(panelFormulario);
         panelFormulario.setLayout(panelFormularioLayout);
         panelFormularioLayout.setHorizontalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(146, 146, 146))
             .addGroup(panelFormularioLayout.createSequentialGroup()
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormularioLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(Registrar))
+                        .addGap(285, 285, 285)
+                        .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormularioLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel1))
-                    .addGroup(panelFormularioLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(Logo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelFormularioLayout.createSequentialGroup()
-                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormularioLayout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelFormularioLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel4)))
-                        .addGap(178, 178, 178)))
-                .addGap(0, 20, Short.MAX_VALUE))
+                                .addComponent(jButton1)
+                                .addGap(88, 88, 88)
+                                .addComponent(Logo))
+                            .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel4)
+                                .addComponent(jPasswordField2)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)))))
+                .addGap(0, 30, Short.MAX_VALUE))
+            .addGroup(panelFormularioLayout.createSequentialGroup()
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(jLabel2))
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Registrar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelFormularioLayout.setVerticalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormularioLayout.createSequentialGroup()
-                .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
@@ -143,12 +156,12 @@ public class InicioSesion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Registrar))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         Fondo.add(panelFormulario, new java.awt.GridBagConstraints());
@@ -194,6 +207,10 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -217,6 +234,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JButton IniciarSesion;
     private javax.swing.JLabel Logo;
     private javax.swing.JButton Registrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
