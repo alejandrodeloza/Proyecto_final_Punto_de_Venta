@@ -7,14 +7,23 @@ package com.mycompany.sistema_punto_de_venta;
  * Ventana principal de CyberVentana.
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+private Sistema_Punto_de_Venta sistema;
+private Usuario usuarioActivo = null;
+//variables necesarias xd 
+
 
     public VentanaPrincipal() {
-        initComponents();
+        initComponents();  
+    this.sistema = sistema;
         Utilidades.cargarLogo(lblLogo); //carga imagen del logo
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);
     }
-
+//para guardar el usuario 
+    public void guardarUsuarioActivo(Usuario u) {
+    this.usuarioActivo = u;
+    btnIniciarSesion.setText("Mi Cuenta");
+}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -92,6 +101,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Iniciar sesión");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
         panelDerecha.add(btnIniciarSesion);
 
         btnCarrito.setBackground(new java.awt.Color(255, 102, 0));
@@ -258,6 +272,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        // TODO add your handling code here:
+        if (usuarioActivo == null) {
+        // si no ha iniciado sesión, abre la ventana InicioSesion
+        InicioSesion login = new InicioSesion(sistema, this);
+        login.setVisible(true);
+    } else {
+        // si ya inició sesión, abre la ventana DatosCuenta
+        DatosCuenta datos = new DatosCuenta(usuarioActivo);
+        datos.setVisible(true);
+    }
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));

@@ -11,12 +11,14 @@ package com.mycompany.sistema_punto_de_venta;
 public class Registro extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Registro.class.getName());
-
+    // Atributo para conectar con la lista de usuarios del sistema
+    private Sistema_Punto_de_Venta sistema;
     /**
      * Creates new form Registro
      */
     public Registro() {
-        initComponents();
+       
+        this(new Sistema_Punto_de_Venta());
     }
 
     /**
@@ -51,7 +53,7 @@ public class Registro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(30, 42, 55));
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         Fondo.setBackground(new java.awt.Color(30, 42, 55));
         Fondo.setLayout(new java.awt.GridBagLayout());
@@ -167,9 +169,9 @@ public class Registro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(65, 65, 65)
-                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(TextosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
@@ -197,7 +199,55 @@ public class Registro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+                                                
+        // 1. Leer lo que escribió el usuario en cada cuadro
+        String nombre = jTextArea4.getText().trim();
+        String correo = jTextArea1.getText().trim();
+        String contra = jTextArea3.getText();
+        String confirmar = jTextArea2.getText();
+
+        // 2. Validar nombre
+        if (!Sistema_Punto_de_Venta.nombreValido(nombre)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nombre inválido (solo letras y espacios).");
+            return;
+        }
+
+        // 3. Validar correo y que no esté repetido
+        if (!Sistema_Punto_de_Venta.correoValido(correo)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Correo electrónico inválido.");
+            return;
+        }
+        if (!sistema.correoUnico(correo)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ese correo ya está registrado.");
+            return;
+        }
+
+        // 4. Validar contraseña y confirmación
+        if (!Sistema_Punto_de_Venta.contrasenaValida(contra)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula, un número y un símbolo (@$!%*?&.).");
+            return;
+        }
+        if (!contra.equals(confirmar)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.");
+            return;
+        }
+
+        // 5. Pedir teléfono de 10 dígitos
+        String telefono = javax.swing.JOptionPane.showInputDialog(this, "Ingresa tu teléfono (10 dígitos):");
+        if (telefono == null || !Sistema_Punto_de_Venta.telefonoValido(telefono.trim())) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El teléfono debe tener 10 números.");
+            return;
+        }
+        if (!sistema.telefonoUnico(telefono.trim())) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ese teléfono ya está registrado.");
+            return;
+        }
+
+        // 6. Guardar el nuevo cliente y cerrar esta ventana
+        sistema.registrarUsuario(correo, nombre, telefono.trim(), contra, "default.png", false);
+        javax.swing.JOptionPane.showMessageDialog(this, "¡Cuenta creada con éxito!");
+        dispose();
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -223,6 +273,14 @@ public class Registro extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Registro().setVisible(true));
+    }
+    
+    public Registro(Sistema_Punto_de_Venta sistema) {
+        initComponents();
+        this.sistema = sistema;
+        setLocationRelativeTo(null);
+        // DISPOSE_ON_CLOSE cierra solo Registro sin apagar todo el programa
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

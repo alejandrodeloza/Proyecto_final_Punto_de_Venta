@@ -6,14 +6,28 @@ package com.mycompany.sistema_punto_de_venta;
 
 
 public class InicioSesion extends javax.swing.JFrame {
-
+    //referencias declaradas 
+private Sistema_Punto_de_Venta sistema;
+private VentanaPrincipal ventanaPrincipal;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InicioSesion.class.getName());
 
     /**
      * Creates new form InicioSesion
      */
+  
+
+    // Constructor vacío 
     public InicioSesion() {
+        this(new Sistema_Punto_de_Venta(), null);
+    }
+
+    // Constructor que recibe el sistema y la ventana principal
+    public InicioSesion(Sistema_Punto_de_Venta sistema, VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.sistema = sistema;
+        this.ventanaPrincipal = ventanaPrincipal;
+        setLocationRelativeTo(null); // Centrar ventana
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); // Cierra solo esta ventana
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -162,6 +176,30 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String correo = jTextArea2.getText().trim();
+    String contra = jTextArea3.getText();
+
+    if (sistema.iniciarSesion(correo, contra)) {
+        Usuario u = sistema.buscarUsuario(correo);
+        javax.swing.JOptionPane.showMessageDialog(this, "¡Bienvenido, " + u.getNombre() + "!");
+
+        if (u instanceof Admin) {
+            // Si es administrador, abre VentanaAdmin
+            VentanaAdmin admin = new VentanaAdmin();
+            admin.setVisible(true);
+            if (ventanaPrincipal != null) {
+                ventanaPrincipal.dispose();
+            }
+        } else {
+            // Si es cliente, le manda el usuario a VentanaPrincipal y cierra el login
+            if (ventanaPrincipal != null) {
+                ventanaPrincipal.guardarUsuarioActivo(u);
+            }
+        }
+        dispose();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos.");
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

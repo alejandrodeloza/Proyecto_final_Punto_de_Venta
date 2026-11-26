@@ -69,6 +69,20 @@ public class Sistema_Punto_de_Venta {
         return false;
     }//Fin del método inicio de sesión
     
+    //Método para buscar y devolver el usuario por su correo
+    public Usuario buscarUsuario(String correo) {
+        //Buscar usuario en la lista
+        for (Usuario u : usuarios) {
+            if (u.getCorreo().equals(correo)) {
+                //Si coincide, regresa el objeto Usuario completo
+                return u;
+            }
+        }
+        //Si no lo encuentra, regresa null
+        return null;
+    }//Fin del método buscarUsuario
+    
+    
     //Método para validar nombre
     public static boolean nombreValido(String nombre) {
         //Reglas
