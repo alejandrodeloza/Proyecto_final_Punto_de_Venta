@@ -35,7 +35,17 @@ public class Cliente extends Usuario {
     }
     
     //Método para agregar producto al carrito
-    
+      public boolean agregarProductoCarrito(Producto p, int cantidad) {
+        if (p == null || cantidad <= 0) 
+            return false;
+
+        int enCarrito = carrito.contarCantidadProducto(p.getIdProducto());
+        if (enCarrito + cantidad <= p.getStock()) {
+            carrito.agregarProducto(p, cantidad);
+            return true;
+        }
+        return false; // No alcanza el stock
+    }
     //Método para comprar carrito
     
     //Método para agregar dirección

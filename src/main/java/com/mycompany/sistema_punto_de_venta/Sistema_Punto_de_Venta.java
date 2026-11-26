@@ -15,7 +15,7 @@ public class Sistema_Punto_de_Venta {
     static ArrayList <Carrito> carritos = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new VentanaPrincipal().setVisible(true);
     }
     
     //Métodos de validación de datos

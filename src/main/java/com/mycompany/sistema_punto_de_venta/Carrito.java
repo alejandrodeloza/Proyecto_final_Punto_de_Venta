@@ -38,5 +38,57 @@ public class Carrito {
         this.total = total;
     }
     
-    
+    public void agregarProducto(Producto p, int cantidad) {
+        if (p != null && cantidad > 0) {
+            for (int i = 0; i < cantidad; i++) {
+                productosCarrito.add(p);
+            }
+            calcularTotal();
+        }
+    }
+
+    public boolean eliminarProducto(String idProducto) {
+        boolean eliminado = productosCarrito.removeIf(p -> p.getIdProducto().equals(idProducto));
+        if (eliminado) {
+            calcularTotal();
+        }
+        return eliminado;
+    }
+
+    // Quita una sola unidad (útil para el botón "-" en VentanaCarrito)
+    public void reducirUnidad(String idProducto) {
+        for (int i = 0; i < productosCarrito.size(); i++) {
+            if (productosCarrito.get(i).getIdProducto().equals(idProducto)) {
+                productosCarrito.remove(i);
+                break;
+            }
+        }
+        calcularTotal();
+    }
+
+    public double calcularTotal() {
+        double suma = 0.0;
+        for (Producto p : productosCarrito) {
+            suma += p.getPrecio();
+        }
+        this.total = suma;
+        return this.total;
+    }
+
+    public void vaciarCarrito() {
+        productosCarrito.clear();
+        this.total = 0.0;
+    }
+
+    // Cuenta cuántas unidades de un mismo producto hay en el carrito
+    public int contarCantidadProducto(String idProducto) {
+        int contador = 0;
+        for (Producto p : productosCarrito) {
+            if (p.getIdProducto().equals(idProducto)) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
 }
