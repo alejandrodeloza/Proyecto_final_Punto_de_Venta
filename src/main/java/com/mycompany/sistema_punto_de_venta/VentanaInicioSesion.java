@@ -4,17 +4,16 @@
  */
 package com.mycompany.sistema_punto_de_venta;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class InicioSesion extends javax.swing.JFrame {
+public class VentanaInicioSesion extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InicioSesion.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaInicioSesion.class.getName());
 
-    public static ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
-    public InicioSesion() {
+    public VentanaInicioSesion() {
         initComponents();
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
     }
 
     @SuppressWarnings("unchecked")
@@ -27,14 +26,13 @@ public class InicioSesion extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         IniciarSesion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Registrar = new javax.swing.JButton();
         jPasswordField2 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        CorreoTextfield = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(24, 37, 52));
@@ -43,7 +41,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(30, 42, 55));
         jPanel2.setForeground(new java.awt.Color(24, 37, 52));
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         Fondo.setBackground(new java.awt.Color(30, 42, 55));
         Fondo.setMinimumSize(new java.awt.Dimension(730, 542));
@@ -63,14 +61,6 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(9, 157, 237));
         jLabel1.setText("Correo electrónico");
-
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea2.setBackground(new java.awt.Color(25, 40, 52));
-        jTextArea2.setColumns(20);
-        jTextArea2.setForeground(new java.awt.Color(9, 157, 237));
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
 
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(9, 157, 237));
@@ -92,6 +82,7 @@ public class InicioSesion extends javax.swing.JFrame {
         Registrar.addActionListener(this::RegistrarActionPerformed);
 
         jPasswordField2.setBackground(new java.awt.Color(30, 42, 55));
+        jPasswordField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPasswordField2.setForeground(new java.awt.Color(9, 157, 237));
         jPasswordField2.addActionListener(this::jPasswordField2ActionPerformed);
 
@@ -100,6 +91,10 @@ public class InicioSesion extends javax.swing.JFrame {
         jButton1.setText("← Regresar");
         jButton1.setBorderPainted(false);
         jButton1.addActionListener(this::jButton1ActionPerformed);
+
+        CorreoTextfield.setBackground(new java.awt.Color(30, 42, 55));
+        CorreoTextfield.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CorreoTextfield.setForeground(new java.awt.Color(9, 157, 237));
 
         javax.swing.GroupLayout panelFormularioLayout = new javax.swing.GroupLayout(panelFormulario);
         panelFormulario.setLayout(panelFormularioLayout);
@@ -112,16 +107,15 @@ public class InicioSesion extends javax.swing.JFrame {
                         .addComponent(IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFormularioLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelFormularioLayout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(88, 88, 88)
                                 .addComponent(Logo))
-                            .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel4)
-                                .addComponent(jPasswordField2)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)))))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                            .addComponent(CorreoTextfield))))
                 .addGap(0, 30, Short.MAX_VALUE))
             .addGroup(panelFormularioLayout.createSequentialGroup()
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,8 +144,8 @@ public class InicioSesion extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addComponent(CorreoTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,32 +168,24 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionActionPerformed
-        String correo = jTextArea2.getText().trim();
+        String correo = CorreoTextfield.getText().trim();
         String contrasena = new String(jPasswordField2.getPassword()).trim();
 
         if (correo.isEmpty() || contrasena.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Error al completar los campos");
         } else {
-            boolean bandera = false;
 
-            for (int i = 0; i < InicioSesion.listaUsuarios.size(); i++) {
-                Usuario contenedor = InicioSesion.listaUsuarios.get(i);
-
-                if (contenedor.getCorreo().equals(correo) && contenedor.getContraseña().equals(contrasena)) {
-                    JOptionPane.showMessageDialog(this, "Ingresar");
-                    bandera = true;
-                    break;
-                }
-            }
-
-            if (!bandera) {
+            if (Sistema_Punto_de_Venta.iniciarSesion(correo, contrasena)) {
+                JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+                this.dispose();
+            } else {
                 JOptionPane.showMessageDialog(this, "Usuario no encontrado");
             }
         }
     }//GEN-LAST:event_IniciarSesionActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-        java.awt.EventQueue.invokeLater(() -> new Registro().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new VentanaRegistro().setVisible(true));
         this.dispose();
     }//GEN-LAST:event_RegistrarActionPerformed
 
@@ -226,10 +212,11 @@ public class InicioSesion extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new InicioSesion().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new VentanaInicioSesion().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CorreoTextfield;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton IniciarSesion;
     private javax.swing.JLabel Logo;
@@ -241,8 +228,6 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel panelFormulario;
     // End of variables declaration//GEN-END:variables
 

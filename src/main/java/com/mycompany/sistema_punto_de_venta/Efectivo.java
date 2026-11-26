@@ -48,4 +48,11 @@ public class Efectivo extends Pago {
     public void setPagado(boolean pagado) {
         this.pagado = pagado;
     }
+    
+    //Método de pago (polimorfismo)
+    @Override
+    public boolean procesarPago() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
 }

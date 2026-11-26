@@ -33,4 +33,11 @@ public class Paypal extends Pago {
         this.contraseñaPaypal = contraseñaPaypal;
     }
     
+    //Método de pago (polimorfismo)
+
+    @Override
+    public boolean procesarPago() {
+        return Sistema_Punto_de_Venta.correoValido(correoPaypal);
+    }
+    
 }

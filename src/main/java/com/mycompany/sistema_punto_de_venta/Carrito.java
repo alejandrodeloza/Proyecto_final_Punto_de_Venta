@@ -55,7 +55,7 @@ public class Carrito {
         return eliminado;
     }
 
-    // Quita una sola unidad (útil para el botón "-" en VentanaCarrito)
+    // Quitar una sola unidad para el botón "-" en VentanaCarrito)
     public void reducirUnidad(String idProducto) {
         for (int i = 0; i < productosCarrito.size(); i++) {
             if (productosCarrito.get(i).getIdProducto().equals(idProducto)) {
@@ -65,6 +65,30 @@ public class Carrito {
         }
         calcularTotal();
     }
+    
+    // Añadir una sola unidad para el botón "+" en VentanaCarrito
+    public boolean aumentarUnidad(String idProducto) {
+        Producto productoEncontrado = null;
+        int cantidadActual = 0;
+
+        //Buscamos el producto y contamos cuántas unidades ya están en el carrito
+        for (Producto p : productosCarrito) {
+            if (p.getIdProducto().equals(idProducto)) {
+                productoEncontrado = p;
+                cantidadActual++;
+            }
+        }
+
+        //Validamos que exista y que haya stock suficiente para sumar 1 más
+        if (productoEncontrado != null && cantidadActual < productoEncontrado.getStock()) {
+            productosCarrito.add(productoEncontrado); // <-- Aquí va el objeto encontrado
+            calcularTotal();
+            return true;
+        }
+
+        return false; // No se pudo aumentar (sin stock suficiente o no encontrado)
+    }
+
 
     public double calcularTotal() {
         double suma = 0.0;
