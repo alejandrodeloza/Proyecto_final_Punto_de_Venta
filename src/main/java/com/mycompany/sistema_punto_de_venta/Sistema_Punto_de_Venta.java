@@ -145,7 +145,30 @@ public class Sistema_Punto_de_Venta {
     // Método para validar contraseña
     public static boolean contrasenaValida(String contraseña) {
         // Validación de contraseña: al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&.])[A-Za-z\\d@$!%*?&.]{8,}$";
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%#*?&.])[A-Za-z\\d@$!%*?&.]{8,}$";
         return Pattern.matches(regex, contraseña);
+    }
+    
+    // Método para nuevo pedido
+    public static void registrarPedido(String Idcliente, String fecha, String metodo, double total) {
+        // Variables locales
+        String Idtemp; // ID completo
+        int Idnum; // Parte numérica del ID
+
+        // Generar ID
+        if (pedidos.isEmpty()) {
+            // Si es el primer usuario se toma un cero
+            Idnum = 0;
+        } else {
+            // Tomamos el último ID  
+            Idtemp = pedidos.getLast().getIdPedido();
+            Idtemp = Idtemp.substring(1);
+            // Tomamos la parte numérica a un int
+            Idnum = Integer.parseInt(Idtemp);
+            Idnum++;
+        }
+        
+        Idtemp = "E" + Integer.toString(Idnum);
+        pedidos.add(new Pedido(Idtemp, Idcliente, fecha, metodo, total));
     }
 }

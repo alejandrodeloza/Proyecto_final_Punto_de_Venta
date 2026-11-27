@@ -22,6 +22,8 @@ public class Tarjeta extends Pago {
         this.fechaVencimiento = fechaVencimiento;
         this.cvv = cvv;
     }
+    
+    
 
     //Métodos Getter
     public String getNumeroTarjeta() {

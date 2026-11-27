@@ -1,5 +1,6 @@
 package com.mycompany.sistema_punto_de_venta;
 
+import java.util.Date;
 import javax.swing.JFrame;
 
 /*
@@ -13,6 +14,7 @@ import javax.swing.JFrame;
 public class VentanaCarrito extends javax.swing.JFrame {
 
     public VentanaCarrito() {
+        this.ahora = new Date();
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -20,7 +22,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
         scrollItems.getVerticalScrollBar().setUnitIncrement(16);
         cargarCarrito();
     }
-    
+    private double total;
       // Reconstruye las tarjetas y los totales a partir del carrito del cliente actual
     private void cargarCarrito() {
         panelItems.removeAll();
@@ -128,7 +130,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
         lblEnvioValor.setText("$" + String.format("%.2f", envtotal));
         lblSubtotalValor.setText("$" + String.format("%.2f", total+envtotal));
         lblTotalValor.setText("$" + String.format("%.2f", total+envtotal+total*0.16));
-
+        this.total= total+envtotal+total*0.16;
         panelItems.revalidate();
         panelItems.repaint();
     }
@@ -467,6 +469,11 @@ public class VentanaCarrito extends javax.swing.JFrame {
         btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         btnSiguiente.setText("Ir al siguiente paso");
         btnSiguiente.setPreferredSize(new java.awt.Dimension(200, 40));
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
         panelResumen.add(btnSiguiente, java.awt.BorderLayout.SOUTH);
 
         panelLateral.add(panelResumen, java.awt.BorderLayout.NORTH);
@@ -483,6 +490,16 @@ public class VentanaCarrito extends javax.swing.JFrame {
     private void btnMas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMas1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMas1ActionPerformed
+    
+    Date ahora;
+    String fecha =ahora.toString();
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        String clienteid = Sistema_Punto_de_Venta.clienteActual.getId();
+        Sistema_Punto_de_Venta.registrarPedido(clienteid, fecha , "", total);
+        new VentanaPago().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
