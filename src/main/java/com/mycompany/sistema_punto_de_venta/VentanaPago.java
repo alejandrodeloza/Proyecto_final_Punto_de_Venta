@@ -239,8 +239,8 @@ public class VentanaPago extends javax.swing.JFrame {
 
         lblNotaEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNotaEfectivo.setForeground(new java.awt.Color(255, 255, 255));
-        lblNotaEfectivo.setText("Pagarás en efectivo al recibir tu pedido.");
         lblNotaEfectivo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNotaEfectivo.setText("Pagar en tienda física: Por el momento solo disponeble: OXXO");
         opcionEfectivo.add(lblNotaEfectivo, java.awt.BorderLayout.CENTER);
 
         panelOpciones.add(opcionEfectivo);

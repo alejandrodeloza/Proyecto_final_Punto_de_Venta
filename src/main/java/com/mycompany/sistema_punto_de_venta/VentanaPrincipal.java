@@ -367,9 +367,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         } else {
             for (Producto p : Sistema_Punto_de_Venta.productos) {
-                if (p.getNombre().toLowerCase().contains(txtBuscar) {
+                if (p.getNombre().toLowerCase().contains(txtBuscar.getText().toLowerCase()))
                     productos_busqueda.add(p);
-                }
             }
         }
 
