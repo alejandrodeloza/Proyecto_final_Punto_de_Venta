@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 public class VentanaCarrito extends javax.swing.JFrame {
 
     public VentanaCarrito() {
+        GestorCSV.guardarTodo();
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);

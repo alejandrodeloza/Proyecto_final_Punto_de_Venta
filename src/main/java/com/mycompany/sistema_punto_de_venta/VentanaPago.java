@@ -97,6 +97,11 @@ public class VentanaPago extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver al carrito");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
         panelDerecha.add(btnVolver);
 
         panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
@@ -353,8 +358,14 @@ public class VentanaPago extends javax.swing.JFrame {
         c.comprarCarrito(); // descuenta stock y vacía el carrito
 
         JOptionPane.showMessageDialog(this, ticket, "Pedido registrado", JOptionPane.INFORMATION_MESSAGE);
+        GestorCSV.guardarTodo();
         this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        new VentanaCarrito().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;

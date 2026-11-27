@@ -17,13 +17,9 @@ public class Sistema_Punto_de_Venta {
     static Admin adminActual;
 
     public static void main(String[] args) {
-        usuarios.add(new Cliente("C0", "u", "u", "u", "u", "u"));
-        usuarios.add(new Admin("A1", "a", "a", "a", "a", "a"));
-        productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png"));
-        productos.add( new Producto("P1", "Mouse logitech", "Nosekeesesto",900.00, 10, "/Mouse.jpg"));
-        productos.add( new Producto("P2", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png"));
-        productos.add( new Producto("P3", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png"));
-        productos.add( new Producto("P4", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png"));
+        GestorCSV.cargarTodo();
+        
+        GestorCSV.guardarTodo();
         new VentanaPrincipal().setVisible(true);
     }
 
