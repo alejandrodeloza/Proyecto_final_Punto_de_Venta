@@ -249,6 +249,11 @@ public class VentanaProducto extends javax.swing.JFrame {
         btnComprar.setForeground(new java.awt.Color(255, 255, 255));
         btnComprar.setText("Comprar ahora");
         btnComprar.setPreferredSize(new java.awt.Dimension(200, 40));
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
         panelCompra.add(btnComprar);
 
         panelInfo.add(panelCompra, java.awt.BorderLayout.SOUTH);
@@ -357,6 +362,26 @@ public class VentanaProducto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    //Agrega a carrito y te manda a el
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        if (producto == null) {
+            return;
+        }
+        if (Sistema_Punto_de_Venta.verificarSesion() == 1) {
+            // Usa el método del Cliente: valida que carrito + cantidad no pase del stock
+            if (Sistema_Punto_de_Venta.clienteActual.agregarProductoCarrito(producto, cantidad)) {
+                JOptionPane.showMessageDialog(this, "Agregado: " + producto.getNombre() + " x" + cantidad);
+                new VentanaCarrito().setVisible(true);
+            } else {
+                int enCarrito = Sistema_Punto_de_Venta.clienteActual.getCarrito().contarCantidadProducto(producto.getIdProducto());
+                JOptionPane.showMessageDialog(this, "No hay existencias suficientes. Ya tienes " + enCarrito
+                        + " en el carrito y hay " + producto.getStock() + " disponibles.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Inicie sesión para comprar");
+        }
+    }//GEN-LAST:event_btnComprarActionPerformed
 
     // Llena la parte de arriba con los datos del producto
     public void mostrarProducto(Producto p) {
@@ -492,12 +517,18 @@ public class VentanaProducto extends javax.swing.JFrame {
 
     // Botón Agregar al carrito
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {
-        if (producto == null) {
+         if (producto == null) {
             return;
         }
         if (Sistema_Punto_de_Venta.verificarSesion() == 1) {
-            JOptionPane.showMessageDialog(this, "Agregado: " + producto.getNombre() + " x" + cantidad);
-            // Aquí puedes agregar 'producto' y 'cantidad' a tu carrito
+            // Usa el método del Cliente: valida que carrito + cantidad no pase del stock
+            if (Sistema_Punto_de_Venta.clienteActual.agregarProductoCarrito(producto, cantidad)) {
+                JOptionPane.showMessageDialog(this, "Agregado: " + producto.getNombre() + " x" + cantidad);
+            } else {
+                int enCarrito = Sistema_Punto_de_Venta.clienteActual.getCarrito().contarCantidadProducto(producto.getIdProducto());
+                JOptionPane.showMessageDialog(this, "No hay existencias suficientes. Ya tienes " + enCarrito
+                        + " en el carrito y hay " + producto.getStock() + " disponibles.");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
         }

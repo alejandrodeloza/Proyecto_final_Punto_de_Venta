@@ -412,12 +412,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         // Evento al presionar el botón de este producto
         btnAgregar.addActionListener(e -> {
-            if (Sistema_Punto_de_Venta.verificarSesion() == 1) {
-                JOptionPane.showMessageDialog(this, "Agregado: " + p.getNombre());
+             if (Sistema_Punto_de_Venta.verificarSesion() == 1) {
+                // Usa el método del Cliente: valida el stock y agrega al carrito
+                if (Sistema_Punto_de_Venta.clienteActual.agregarProductoCarrito(p, 1)) {
+                    JOptionPane.showMessageDialog(this, "Agregado: " + p.getNombre());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No hay más existencias de " + p.getNombre());
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Inicie sesión para agregar a carrito");
             }
-            // Aquí puedes agregar 'p' a la lista de tu VentanaCarrito
         });
         
         // Evento al presionar el producto
