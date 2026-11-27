@@ -17,8 +17,8 @@ public class Sistema_Punto_de_Venta {
     static Admin adminActual;
 
     public static void main(String[] args) {
-        usuarios.add(new Cliente("u", "u", "u", "u", "u", "u"));
-        usuarios.add(new Admin("a", "a", "a", "a", "a", "a"));
+        usuarios.add(new Cliente("C0", "u", "u", "u", "u", "u"));
+        usuarios.add(new Admin("A1", "a", "a", "a", "a", "a"));
         productos.add( new Producto("P0", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png"));
         productos.add( new Producto("P1", "Mouse logitech", "Nosekeesesto",900.00, 10, "/Mouse.jpg"));
         productos.add( new Producto("P2", "Teclado Mecánico RGB", "Switches Blue", 850.00, 10, "/teclado.png"));

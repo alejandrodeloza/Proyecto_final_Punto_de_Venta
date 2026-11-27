@@ -16,6 +16,7 @@ public class VentanaInicioSesion extends javax.swing.JFrame {
     public VentanaInicioSesion() {
         this(new Sistema_Punto_de_Venta(), null);
     }
+        
 
     public VentanaInicioSesion(Sistema_Punto_de_Venta sistema, VentanaPrincipal ventanaPrincipal) {
         initComponents();
