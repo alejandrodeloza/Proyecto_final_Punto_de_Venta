@@ -1,16 +1,26 @@
 package com.mycompany.sistema_punto_de_venta;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Ventana de métodos de pago de CyberVentana.
  */
 public class VentanaPago extends javax.swing.JFrame {
-
+    
+    private Pedido ped;
+    private boolean pago;
+    private int metod=0;
+    
     public VentanaPago() {
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        for(Pedido pe: Sistema_Punto_de_Venta.pedidos){
+            if(Sistema_Punto_de_Venta.clienteActual.getId().equals(pe.getIdCliente()))
+                ped = pe;
+        }
+        lblTotalValor.setText(Double.toString(ped.getTotal_de_pago()));
         // Hace que la rueda del ratón desplace más rápido
         scrollOpciones.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -45,6 +55,8 @@ public class VentanaPago extends javax.swing.JFrame {
         panelCamposPaypal = new javax.swing.JPanel();
         lblCorreo = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+        lblContraseña = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JTextField();
         opcionEfectivo = new javax.swing.JPanel();
         rbEfectivo = new javax.swing.JRadioButton();
         lblNotaEfectivo = new javax.swing.JLabel();
@@ -59,10 +71,10 @@ public class VentanaPago extends javax.swing.JFrame {
         setTitle("CyberVentana - Método de pago");
         setExtendedState(6);
 
-        panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
+        panelEncabezado.setBackground(new java.awt.Color(30, 42, 55));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
+        panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
@@ -77,7 +89,7 @@ public class VentanaPago extends javax.swing.JFrame {
         lblTitulo.setText("Método de pago");
         panelEncabezado.add(lblTitulo, java.awt.BorderLayout.CENTER);
 
-        panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
+        panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
         panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 25));
 
         btnVolver.setBackground(new java.awt.Color(0, 92, 184));
@@ -90,27 +102,32 @@ public class VentanaPago extends javax.swing.JFrame {
 
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelContenedor.setBackground(new java.awt.Color(45, 45, 45));
+        panelContenedor.setBackground(new java.awt.Color(22, 28, 36));
         panelContenedor.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelContenedor.setLayout(new java.awt.BorderLayout());
 
-        panelOpciones.setBackground(new java.awt.Color(45, 45, 45));
+        panelOpciones.setBackground(new java.awt.Color(30, 42, 55));
         panelOpciones.setLayout(new java.awt.GridLayout(0, 1));
 
-        opcionTarjeta.setBackground(new java.awt.Color(66, 66, 66));
-        opcionTarjeta.setPreferredSize(new java.awt.Dimension(600, 220));
+        opcionTarjeta.setBackground(new java.awt.Color(30, 42, 55));
         opcionTarjeta.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        opcionTarjeta.setPreferredSize(new java.awt.Dimension(600, 220));
         opcionTarjeta.setLayout(new java.awt.BorderLayout());
 
-        rbTarjeta.setBackground(new java.awt.Color(66, 66, 66));
+        rbTarjeta.setBackground(new java.awt.Color(30, 42, 55));
         grupoPago.add(rbTarjeta);
         rbTarjeta.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         rbTarjeta.setForeground(new java.awt.Color(255, 255, 255));
         rbTarjeta.setSelected(true);
         rbTarjeta.setText("Tarjeta de crédito / débito");
+        rbTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTarjetaActionPerformed(evt);
+            }
+        });
         opcionTarjeta.add(rbTarjeta, java.awt.BorderLayout.NORTH);
 
-        panelCamposTarjeta.setBackground(new java.awt.Color(66, 66, 66));
+        panelCamposTarjeta.setBackground(new java.awt.Color(30, 42, 55));
         panelCamposTarjeta.setLayout(new java.awt.GridLayout(4, 2));
 
         lblNumero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -119,6 +136,7 @@ public class VentanaPago extends javax.swing.JFrame {
         lblNumero.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         panelCamposTarjeta.add(lblNumero);
 
+        txtNumero.setBackground(new java.awt.Color(25, 40, 52));
         txtNumero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         panelCamposTarjeta.add(txtNumero);
 
@@ -128,6 +146,7 @@ public class VentanaPago extends javax.swing.JFrame {
         lblTitular.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         panelCamposTarjeta.add(lblTitular);
 
+        txtTitular.setBackground(new java.awt.Color(25, 40, 52));
         txtTitular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         panelCamposTarjeta.add(txtTitular);
 
@@ -137,6 +156,7 @@ public class VentanaPago extends javax.swing.JFrame {
         lblVencimiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         panelCamposTarjeta.add(lblVencimiento);
 
+        txtVencimiento.setBackground(new java.awt.Color(25, 40, 52));
         txtVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         panelCamposTarjeta.add(txtVencimiento);
 
@@ -146,6 +166,7 @@ public class VentanaPago extends javax.swing.JFrame {
         lblCvv.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         panelCamposTarjeta.add(lblCvv);
 
+        txtCvv.setBackground(new java.awt.Color(25, 40, 52));
         txtCvv.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         panelCamposTarjeta.add(txtCvv);
 
@@ -153,44 +174,66 @@ public class VentanaPago extends javax.swing.JFrame {
 
         panelOpciones.add(opcionTarjeta);
 
-        opcionPaypal.setBackground(new java.awt.Color(66, 66, 66));
-        opcionPaypal.setPreferredSize(new java.awt.Dimension(600, 110));
+        opcionPaypal.setBackground(new java.awt.Color(30, 42, 55));
         opcionPaypal.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        opcionPaypal.setMinimumSize(new java.awt.Dimension(302, 90));
+        opcionPaypal.setPreferredSize(new java.awt.Dimension(600, 90));
         opcionPaypal.setLayout(new java.awt.BorderLayout());
 
-        rbPaypal.setBackground(new java.awt.Color(66, 66, 66));
+        rbPaypal.setBackground(new java.awt.Color(30, 42, 55));
         grupoPago.add(rbPaypal);
         rbPaypal.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         rbPaypal.setForeground(new java.awt.Color(255, 255, 255));
         rbPaypal.setText("PayPal");
+        rbPaypal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPaypalActionPerformed(evt);
+            }
+        });
         opcionPaypal.add(rbPaypal, java.awt.BorderLayout.NORTH);
 
-        panelCamposPaypal.setBackground(new java.awt.Color(66, 66, 66));
-        panelCamposPaypal.setLayout(new java.awt.GridLayout(1, 2));
+        panelCamposPaypal.setBackground(new java.awt.Color(30, 42, 55));
+        panelCamposPaypal.setLayout(new java.awt.GridLayout(2, 2));
 
         lblCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        lblCorreo.setText("Correo de PayPal");
         lblCorreo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCorreo.setText("Correo de PayPal");
         panelCamposPaypal.add(lblCorreo);
 
+        txtCorreo.setBackground(new java.awt.Color(25, 40, 52));
         txtCorreo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         panelCamposPaypal.add(txtCorreo);
+
+        lblContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        lblContraseña.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblContraseña.setText("Contraseña de PayPal");
+        panelCamposPaypal.add(lblContraseña);
+
+        txtContraseña.setBackground(new java.awt.Color(25, 40, 52));
+        txtContraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        panelCamposPaypal.add(txtContraseña);
 
         opcionPaypal.add(panelCamposPaypal, java.awt.BorderLayout.CENTER);
 
         panelOpciones.add(opcionPaypal);
 
-        opcionEfectivo.setBackground(new java.awt.Color(66, 66, 66));
-        opcionEfectivo.setPreferredSize(new java.awt.Dimension(600, 100));
+        opcionEfectivo.setBackground(new java.awt.Color(30, 42, 55));
         opcionEfectivo.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        opcionEfectivo.setPreferredSize(new java.awt.Dimension(600, 100));
         opcionEfectivo.setLayout(new java.awt.BorderLayout());
 
-        rbEfectivo.setBackground(new java.awt.Color(66, 66, 66));
+        rbEfectivo.setBackground(new java.awt.Color(30, 42, 55));
         grupoPago.add(rbEfectivo);
         rbEfectivo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         rbEfectivo.setForeground(new java.awt.Color(255, 255, 255));
         rbEfectivo.setText("Efectivo");
+        rbEfectivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbEfectivoActionPerformed(evt);
+            }
+        });
         opcionEfectivo.add(rbEfectivo, java.awt.BorderLayout.NORTH);
 
         lblNotaEfectivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -207,28 +250,30 @@ public class VentanaPago extends javax.swing.JFrame {
 
         getContentPane().add(scrollOpciones, java.awt.BorderLayout.CENTER);
 
-        panelLateral.setBackground(new java.awt.Color(45, 45, 45));
+        panelLateral.setBackground(new java.awt.Color(22, 28, 36));
         panelLateral.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelLateral.setLayout(new java.awt.BorderLayout());
 
-        panelResumen.setBackground(new java.awt.Color(66, 66, 66));
-        panelResumen.setPreferredSize(new java.awt.Dimension(340, 140));
+        panelResumen.setBackground(new java.awt.Color(30, 42, 55));
         panelResumen.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        panelResumen.setPreferredSize(new java.awt.Dimension(340, 140));
         panelResumen.setLayout(new java.awt.BorderLayout());
 
-        panelTotal.setBackground(new java.awt.Color(66, 66, 66));
+        panelTotal.setBackground(new java.awt.Color(30, 42, 55));
         panelTotal.setLayout(new java.awt.GridLayout(1, 2));
 
+        lblTotalTexto.setBackground(new java.awt.Color(30, 42, 55));
         lblTotalTexto.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTotalTexto.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotalTexto.setText("Total a pagar");
         lblTotalTexto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTotalTexto.setText("Total a pagar");
         panelTotal.add(lblTotalTexto);
 
+        lblTotalValor.setBackground(new java.awt.Color(30, 42, 55));
         lblTotalValor.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTotalValor.setForeground(new java.awt.Color(255, 102, 0));
-        lblTotalValor.setText("$0.00");
         lblTotalValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalValor.setText("$0.00");
         panelTotal.add(lblTotalValor);
 
         panelResumen.add(panelTotal, java.awt.BorderLayout.NORTH);
@@ -238,6 +283,11 @@ public class VentanaPago extends javax.swing.JFrame {
         btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
         btnConfirmar.setText("Confirmar pago");
         btnConfirmar.setPreferredSize(new java.awt.Dimension(200, 40));
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
         panelResumen.add(btnConfirmar, java.awt.BorderLayout.SOUTH);
 
         panelLateral.add(panelResumen, java.awt.BorderLayout.NORTH);
@@ -247,11 +297,50 @@ public class VentanaPago extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void rbTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTarjetaActionPerformed
+        Tarjeta tarj = new Tarjeta(txtNumero.getText(), txtTitular.getText(), txtVencimiento.getText(), txtCvv.getText(),"", ped.getFecha(), ped.getTotal_de_pago());
+        pago = tarj.procesarPago();  
+        metod=1;
+    }//GEN-LAST:event_rbTarjetaActionPerformed
+
+    private void rbPaypalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPaypalActionPerformed
+        Paypal pay = new Paypal(txtCorreo.getText(), txtContraseña.getText(), "", ped.getFecha(), ped.getTotal_de_pago());
+        pago = pay.procesarPago();
+        metod=2;
+    }//GEN-LAST:event_rbPaypalActionPerformed
+
+    private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
+        Efectivo efec = new Efectivo("", ped.getFecha(), ped.getTotal_de_pago());
+        efec.procesarPago();
+        metod=3;
+    }//GEN-LAST:event_rbEfectivoActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        if(metod==1){
+            if(pago){
+                JOptionPane.showMessageDialog(this, "Pago exitoso");
+                //Cargar datos faltantes
+                ped.generarticket(2, Sistema_Punto_de_Venta.clienteActual);
+            }
+        }
+        else if(metod==2)
+            if(pago){
+                JOptionPane.showMessageDialog(this, "Pago exitoso");
+                //Cargar datoss faltantes
+                ped.generarticket(1, Sistema_Punto_de_Venta.clienteActual);
+            }
+            else{
+                //Cargar datos faltantes
+                ped.generarticket(1, Sistema_Punto_de_Venta.clienteActual);
+            }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
     private javax.swing.ButtonGroup grupoPago;
+    private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblCvv;
     private javax.swing.JLabel lblNotaEfectivo;
@@ -278,6 +367,7 @@ public class VentanaPago extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbPaypal;
     private javax.swing.JRadioButton rbTarjeta;
     private javax.swing.JScrollPane scrollOpciones;
+    private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtCvv;
     private javax.swing.JTextField txtNumero;
