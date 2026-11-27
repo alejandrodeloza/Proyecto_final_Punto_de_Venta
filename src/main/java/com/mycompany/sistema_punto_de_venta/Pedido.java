@@ -103,4 +103,14 @@ public class Pedido {
 
         return Ticket;
     }
+
+    private int estadoActual = 0; // 0 Pago pendiente, 1 Pagado, 2 Enviando, 3 Entregado
+
+    public int getEstadoActual() {
+        return estadoActual;
+    }
+
+    public void setEstadoActual(int estadoActual) {
+        this.estadoActual = estadoActual;
+    }
 }

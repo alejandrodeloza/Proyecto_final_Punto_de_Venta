@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 public class VentanaCarrito extends javax.swing.JFrame {
 
     public VentanaCarrito() {
-        this.ahora = new Date();
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -491,10 +490,9 @@ public class VentanaCarrito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMas1ActionPerformed
     
-    Date ahora;
-    String fecha =ahora.toString();
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        String fecha = new Date().toString();
         String clienteid = Sistema_Punto_de_Venta.clienteActual.getId();
         Sistema_Punto_de_Venta.registrarPedido(clienteid, fecha , "", total);
         new VentanaPago().setVisible(true);

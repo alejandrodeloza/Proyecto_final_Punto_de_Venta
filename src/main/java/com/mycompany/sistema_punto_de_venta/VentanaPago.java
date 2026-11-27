@@ -1,5 +1,6 @@
 package com.mycompany.sistema_punto_de_venta;
 
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -298,41 +299,61 @@ public class VentanaPago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTarjetaActionPerformed
-        Tarjeta tarj = new Tarjeta(txtNumero.getText(), txtTitular.getText(), txtVencimiento.getText(), txtCvv.getText(),"", ped.getFecha(), ped.getTotal_de_pago());
-        pago = tarj.procesarPago();  
-        metod=1;
+        
     }//GEN-LAST:event_rbTarjetaActionPerformed
 
     private void rbPaypalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPaypalActionPerformed
-        Paypal pay = new Paypal(txtCorreo.getText(), txtContraseña.getText(), "", ped.getFecha(), ped.getTotal_de_pago());
-        pago = pay.procesarPago();
-        metod=2;
+        
     }//GEN-LAST:event_rbPaypalActionPerformed
 
     private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
-        Efectivo efec = new Efectivo("", ped.getFecha(), ped.getTotal_de_pago());
-        efec.procesarPago();
-        metod=3;
+        
     }//GEN-LAST:event_rbEfectivoActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if(metod==1){
-            if(pago){
-                JOptionPane.showMessageDialog(this, "Pago exitoso");
-                //Cargar datos faltantes
-                ped.generarticket(2, Sistema_Punto_de_Venta.clienteActual);
+        Cliente c = Sistema_Punto_de_Venta.clienteActual;
+        int estado;
+        String metodoTexto;
+
+        if (rbTarjeta.isSelected()) {
+            Tarjeta t = new Tarjeta(txtNumero.getText().trim(), txtTitular.getText().trim(),
+                    txtVencimiento.getText().trim(), txtCvv.getText().trim(),
+                    "", ped.getFecha(), ped.getTotal_de_pago());
+            if (!t.procesarPago()) {
+                JOptionPane.showMessageDialog(this, "Datos de tarjeta inválidos.");
+                return;
             }
+            estado = 1; // Pagado
+            metodoTexto = "Tarjeta";
+
+        } else if (rbPaypal.isSelected()) {
+            Paypal p = new Paypal(txtCorreo.getText().trim(), txtContraseña.getText(),
+                    "", ped.getFecha(), ped.getTotal_de_pago());
+            if (!p.procesarPago()) {
+                JOptionPane.showMessageDialog(this, "Correo de PayPal inválido.");
+                return;
+            }
+            estado = 1; // Pagado
+            metodoTexto = "PayPal";
+
+        } else {
+            Efectivo e = new Efectivo("", ped.getFecha(), ped.getTotal_de_pago());
+            e.procesarPago(); // muestra la ficha de pago
+            estado = 0; // Pago pendiente
+            metodoTexto = "Efectivo (OXXO)";
         }
-        else if(metod==2)
-            if(pago){
-                JOptionPane.showMessageDialog(this, "Pago exitoso");
-                //Cargar datoss faltantes
-                ped.generarticket(1, Sistema_Punto_de_Venta.clienteActual);
-            }
-            else{
-                //Cargar datos faltantes
-                ped.generarticket(1, Sistema_Punto_de_Venta.clienteActual);
-            }
+
+        // Completar los datos del pedido
+        ped.setMetodo_de_pago(metodoTexto);
+        ped.setProductosComprados(new ArrayList<>(c.getCarrito().getProductosCarrito()));
+        ped.setEstadoActual(estado);
+
+        String ticket = ped.generarticket(estado, c);
+
+        c.comprarCarrito(); // descuenta stock y vacía el carrito
+
+        JOptionPane.showMessageDialog(this, ticket, "Pedido registrado", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

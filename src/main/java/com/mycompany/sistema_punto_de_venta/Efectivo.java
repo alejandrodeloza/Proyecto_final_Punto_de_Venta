@@ -73,7 +73,7 @@ public class Efectivo extends Pago {
         Date fechaFutura = calendar.getTime();
         fechaLimite = fechaFutura.toString();
         pagado=false;
-        JOptionPane.showInputDialog(0, generarFichaPago());
+        JOptionPane.showMessageDialog(null, generarFichaPago());
         return true;
     }
     
