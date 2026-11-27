@@ -1,4 +1,7 @@
 package com.mycompany.sistema_punto_de_venta;
+
+import javax.swing.JFrame;
+
 /*
  * CyberVentana - ventana del carrito
  */
@@ -12,8 +15,122 @@ public class VentanaCarrito extends javax.swing.JFrame {
     public VentanaCarrito() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // Hace que la rueda del ratón desplace más rápido
         scrollItems.getVerticalScrollBar().setUnitIncrement(16);
+        cargarCarrito();
+    }
+    
+      // Reconstruye las tarjetas y los totales a partir del carrito del cliente actual
+    private void cargarCarrito() {
+        panelItems.removeAll();
+
+        Cliente cliente = Sistema_Punto_de_Venta.clienteActual;
+        if (cliente == null) {
+            return;
+        }
+        Carrito carrito = cliente.getCarrito();
+
+        // Agrupa las unidades repetidas: un producto = una tarjeta
+        java.util.LinkedHashMap<String, Producto> unicos = new java.util.LinkedHashMap<>();
+        for (Producto p : carrito.getProductosCarrito()) {
+            unicos.putIfAbsent(p.getIdProducto(), p);
+        }
+
+        if (unicos.isEmpty()) {
+            javax.swing.JLabel vacio = new javax.swing.JLabel("Tu carrito está vacío", javax.swing.SwingConstants.CENTER);
+            vacio.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 18));
+            vacio.setForeground(java.awt.Color.WHITE);
+            panelItems.add(vacio);
+        }
+
+        for (Producto p : unicos.values()) {
+            final String id = p.getIdProducto();
+            int cantidad = carrito.contarCantidadProducto(id);
+
+            javax.swing.JPanel tarjeta = new javax.swing.JPanel(new java.awt.BorderLayout());
+            tarjeta.setBackground(new java.awt.Color(30, 42, 55));
+            tarjeta.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            tarjeta.setPreferredSize(new java.awt.Dimension(600, 80));
+
+            javax.swing.JLabel lblNombre = new javax.swing.JLabel(p.getNombre());
+            lblNombre.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 16));
+            lblNombre.setForeground(java.awt.Color.WHITE);
+            tarjeta.add(lblNombre, java.awt.BorderLayout.CENTER);
+
+            javax.swing.JPanel acciones = new javax.swing.JPanel(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+            acciones.setBackground(new java.awt.Color(30, 42, 55));
+
+            // Botón "-" : quita una unidad
+            javax.swing.JButton btnMenos = new javax.swing.JButton("-");
+            btnMenos.setBackground(new java.awt.Color(0, 92, 184));
+            btnMenos.setForeground(java.awt.Color.WHITE);
+            btnMenos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+            btnMenos.setPreferredSize(new java.awt.Dimension(45, 30));
+            btnMenos.addActionListener(e -> {
+                carrito.reducirUnidad(id);
+                cargarCarrito();
+            });
+            acciones.add(btnMenos);
+
+            javax.swing.JLabel lblCant = new javax.swing.JLabel(String.valueOf(cantidad), javax.swing.SwingConstants.CENTER);
+            lblCant.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 16));
+            lblCant.setForeground(java.awt.Color.WHITE);
+            lblCant.setPreferredSize(new java.awt.Dimension(40, 30));
+            acciones.add(lblCant);
+
+            // Botón "+" : agrega una unidad (valida el stock)
+            javax.swing.JButton btnMas = new javax.swing.JButton("+");
+            btnMas.setBackground(new java.awt.Color(0, 92, 184));
+            btnMas.setForeground(java.awt.Color.WHITE);
+            btnMas.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
+            btnMas.setPreferredSize(new java.awt.Dimension(45, 30));
+            btnMas.addActionListener(e -> {
+                if (!carrito.aumentarUnidad(id)) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "No hay más existencias de " + p.getNombre());
+                }
+                cargarCarrito();
+            });
+            acciones.add(btnMas);
+
+            // Precio de la línea = precio unitario x cantidad
+            javax.swing.JLabel lblPrecio = new javax.swing.JLabel("$" + String.format("%.2f", p.getPrecio() * cantidad),
+                    javax.swing.SwingConstants.RIGHT);
+            lblPrecio.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 16));
+            lblPrecio.setForeground(java.awt.Color.WHITE);
+            lblPrecio.setPreferredSize(new java.awt.Dimension(120, 30));
+            acciones.add(lblPrecio);
+
+            // Botón Eliminar : quita todas las unidades del producto
+            javax.swing.JButton btnEliminar = new javax.swing.JButton("Eliminar");
+            btnEliminar.setBackground(new java.awt.Color(110, 110, 110));
+            btnEliminar.setForeground(java.awt.Color.WHITE);
+            btnEliminar.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 13));
+            btnEliminar.addActionListener(e -> {
+                carrito.eliminarProducto(id);
+                cargarCarrito();
+            });
+            acciones.add(btnEliminar);
+
+            tarjeta.add(acciones, java.awt.BorderLayout.EAST);
+            panelItems.add(tarjeta);
+        }
+
+        // Totales del resumen
+        double total = carrito.calcularTotal();
+        double envtotal;
+        if(total>1500)
+            envtotal=0;
+        else{
+            envtotal=total*0.1;
+        }
+        lblTotalProductosValor.setText(String.valueOf(carrito.getProductosCarrito().size()));
+        lblEnvioValor.setText("$" + String.format("%.2f", envtotal));
+        lblSubtotalValor.setText("$" + String.format("%.2f", total+envtotal));
+        lblTotalValor.setText("$" + String.format("%.2f", total+envtotal+total*0.16));
+
+        panelItems.revalidate();
+        panelItems.repaint();
     }
 
     @SuppressWarnings("unchecked")

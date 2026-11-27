@@ -1,5 +1,6 @@
 package com.mycompany.sistema_punto_de_venta;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,12 +15,14 @@ public class VentanaAdmin extends javax.swing.JFrame {
     public VentanaAdmin() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // Colores del encabezado de la tabla y del área de scroll
         tablaProductos.getTableHeader().setBackground(new java.awt.Color(0, 92, 184));
         tablaProductos.getTableHeader().setForeground(java.awt.Color.WHITE);
         tablaProductos.getTableHeader().setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
         scrollTabla.getViewport().setBackground(new java.awt.Color(66, 66, 66));
         scrollTabla.getVerticalScrollBar().setUnitIncrement(16);
+        cargarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -55,10 +58,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         setTitle("CyberVentana - Administrador");
         setExtendedState(6);
 
-        panelEncabezado.setBackground(new java.awt.Color(33, 33, 33));
+        panelEncabezado.setBackground(new java.awt.Color(30, 42, 55));
         panelEncabezado.setLayout(new java.awt.BorderLayout());
 
-        panelIzquierda.setBackground(new java.awt.Color(33, 33, 33));
+        panelIzquierda.setBackground(new java.awt.Color(30, 42, 55));
         panelIzquierda.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CyberVentana (3).png"))); // NOI18N
@@ -67,107 +70,121 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         panelEncabezado.add(panelIzquierda, java.awt.BorderLayout.WEST);
 
+        lblTitulo.setBackground(new java.awt.Color(30, 42, 55));
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Panel de administración");
         panelEncabezado.add(lblTitulo, java.awt.BorderLayout.CENTER);
 
-        panelDerecha.setBackground(new java.awt.Color(33, 33, 33));
+        panelDerecha.setBackground(new java.awt.Color(30, 42, 55));
         panelDerecha.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btnSalir.setBackground(new java.awt.Color(0, 92, 184));
         btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("Cerrar sesión");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
         panelDerecha.add(btnSalir);
 
         panelEncabezado.add(panelDerecha, java.awt.BorderLayout.EAST);
 
         getContentPane().add(panelEncabezado, java.awt.BorderLayout.NORTH);
 
-        panelCentro.setBackground(new java.awt.Color(45, 45, 45));
+        panelCentro.setBackground(new java.awt.Color(22, 28, 36));
         panelCentro.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelCentro.setLayout(new java.awt.BorderLayout());
 
-        tablaProductos.setBackground(new java.awt.Color(66, 66, 66));
-        tablaProductos.setForeground(new java.awt.Color(255, 255, 255));
+        tablaProductos.setBackground(new java.awt.Color(30, 42, 55));
         tablaProductos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tablaProductos.setRowHeight(28);
-        tablaProductos.setSelectionBackground(new java.awt.Color(255, 102, 0));
-        tablaProductos.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tablaProductos.setGridColor(new java.awt.Color(110, 110, 110));
+        tablaProductos.setForeground(new java.awt.Color(255, 255, 255));
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nombre", "Categoría", "Precio", "Existencias"
+                "ID", "Nombre", "Descripcion", "Precio", "Existencias"
             }
         ));
+        tablaProductos.setGridColor(new java.awt.Color(110, 110, 110));
+        tablaProductos.setRowHeight(28);
+        tablaProductos.setSelectionBackground(new java.awt.Color(255, 102, 0));
+        tablaProductos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         scrollTabla.setViewportView(tablaProductos);
 
         panelCentro.add(scrollTabla, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(panelCentro, java.awt.BorderLayout.CENTER);
 
-        panelLateral.setBackground(new java.awt.Color(45, 45, 45));
+        panelLateral.setBackground(new java.awt.Color(22, 28, 36));
         panelLateral.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
         panelLateral.setLayout(new java.awt.BorderLayout());
 
-        panelFormulario.setBackground(new java.awt.Color(66, 66, 66));
-        panelFormulario.setPreferredSize(new java.awt.Dimension(360, 340));
+        panelFormulario.setBackground(new java.awt.Color(30, 42, 55));
         panelFormulario.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        panelFormulario.setPreferredSize(new java.awt.Dimension(360, 340));
         panelFormulario.setLayout(new java.awt.BorderLayout());
 
         lblAgregar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        lblAgregar.setText("Agregar producto");
         lblAgregar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAgregar.setText("Agregar producto");
         panelFormulario.add(lblAgregar, java.awt.BorderLayout.NORTH);
 
-        panelCampos.setBackground(new java.awt.Color(66, 66, 66));
+        panelCampos.setBackground(new java.awt.Color(30, 42, 55));
         panelCampos.setLayout(new java.awt.GridLayout(4, 2));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombre.setText("Nombre");
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNombre.setText("Nombre");
         panelCampos.add(lblNombre);
 
+        txtNombre.setBackground(new java.awt.Color(25, 40, 52));
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(9, 157, 237));
         panelCampos.add(txtNombre);
 
         lblCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblCategoria.setForeground(new java.awt.Color(255, 255, 255));
-        lblCategoria.setText("Categoría");
         lblCategoria.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCategoria.setText("Descripción");
         panelCampos.add(lblCategoria);
 
+        txtCategoria.setBackground(new java.awt.Color(25, 40, 52));
         txtCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCategoria.setForeground(new java.awt.Color(9, 157, 237));
         panelCampos.add(txtCategoria);
 
         lblPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPrecio.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrecio.setText("Precio");
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPrecio.setText("Precio");
         panelCampos.add(lblPrecio);
 
+        txtPrecio.setBackground(new java.awt.Color(25, 40, 52));
         txtPrecio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPrecio.setForeground(new java.awt.Color(9, 157, 237));
         panelCampos.add(txtPrecio);
 
         lblExistencias.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblExistencias.setForeground(new java.awt.Color(255, 255, 255));
-        lblExistencias.setText("Existencias");
         lblExistencias.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblExistencias.setText("Existencias");
         panelCampos.add(lblExistencias);
 
+        txtExistencias.setBackground(new java.awt.Color(25, 40, 52));
         txtExistencias.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtExistencias.setForeground(new java.awt.Color(9, 157, 237));
         panelCampos.add(txtExistencias);
 
         panelFormulario.add(panelCampos, java.awt.BorderLayout.CENTER);
 
-        panelBotones.setBackground(new java.awt.Color(66, 66, 66));
+        panelBotones.setBackground(new java.awt.Color(30, 42, 55));
         panelBotones.setLayout(new java.awt.GridLayout(2, 1));
 
         btnAgregar.setBackground(new java.awt.Color(255, 102, 0));
@@ -200,13 +217,37 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
 
-    // Agrega un producto a la tabla (valida que los datos sean correctos)
+    // Cierra la sesión del admin y regresa a la tienda
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Sistema_Punto_de_Venta.adminActual = null;
+        Sistema_Punto_de_Venta.clienteActual = null;
+        new VentanaPrincipal().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+    
+      // Llena la tabla con los productos del sistema (los dados de baja tienen stock 0 y no se muestran)
+    private void cargarTabla() {
+        DefaultTableModel modelo = (DefaultTableModel) tablaProductos.getModel();
+        modelo.setRowCount(0);
+        for (Producto p : Sistema_Punto_de_Venta.productos) {
+            if (p.getStock() > 0) {
+                modelo.addRow(new Object[]{p.getIdProducto(), p.getNombre(), p.getDescripcion(), p.getPrecio(), p.getStock()});
+            }
+        }
+    }
+    
+   // Agrega un producto a la tabla (valida que los datos sean correctos)
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {
         String nombre = txtNombre.getText().trim();
-        String categoria = txtCategoria.getText().trim();
-        if (nombre.isEmpty() || categoria.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Escribe el nombre y la categoría del producto.");
+        String descripcion = txtCategoria.getText().trim();
+        if (Sistema_Punto_de_Venta.adminActual == null) {
+            JOptionPane.showMessageDialog(this, "Inicia sesión como administrador.");
+            return;
+        }
+        if (nombre.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escribe el nombre y la descripción del producto.");
             return;
         }
         try {
@@ -215,8 +256,14 @@ public class VentanaAdmin extends javax.swing.JFrame {
             if (precio < 0 || existencias < 0) {
                 throw new NumberFormatException();
             }
-            DefaultTableModel modelo = (DefaultTableModel) tablaProductos.getModel();
-            modelo.addRow(new Object[]{siguienteId++, nombre, categoria, precio, existencias});
+            // El Admin genera el ID y agrega el producto a la lista del sistema
+            // (sin imagen: la ventana principal mostrará "Sin imagen")
+            if (!Sistema_Punto_de_Venta.adminActual.darDeAltaProducto(
+                    Sistema_Punto_de_Venta.productos, nombre, descripcion, precio, existencias, "")) {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el producto.");
+                return;
+            }
+            cargarTabla();
             txtNombre.setText("");
             txtCategoria.setText("");
             txtPrecio.setText("");
@@ -238,10 +285,19 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 "Confirmar", JOptionPane.YES_NO_OPTION);
         if (opcion == JOptionPane.YES_OPTION) {
             DefaultTableModel modelo = (DefaultTableModel) tablaProductos.getModel();
-            modelo.removeRow(tablaProductos.convertRowIndexToModel(fila));
+            String id = (String) modelo.getValueAt(tablaProductos.convertRowIndexToModel(fila), 0);
+            // Dar de baja deja el stock en 0, así deja de mostrarse en la tienda
+            if (Sistema_Punto_de_Venta.adminActual != null
+                    && Sistema_Punto_de_Venta.adminActual.darDeBajaProducto(Sistema_Punto_de_Venta.productos, id)) {
+                cargarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo quitar el producto.");
+            }
         }
     }
 
+    // Cierra la sesión del admin y regresa a la tienda
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo;
     private javax.swing.JButton btnAgregar;

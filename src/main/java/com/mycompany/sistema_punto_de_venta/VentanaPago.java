@@ -1,5 +1,7 @@
 package com.mycompany.sistema_punto_de_venta;
 
+import javax.swing.JFrame;
+
 /**
  * Ventana de métodos de pago de CyberVentana.
  */
@@ -8,6 +10,7 @@ public class VentanaPago extends javax.swing.JFrame {
     public VentanaPago() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // Hace que la rueda del ratón desplace más rápido
         scrollOpciones.getVerticalScrollBar().setUnitIncrement(16);
     }
