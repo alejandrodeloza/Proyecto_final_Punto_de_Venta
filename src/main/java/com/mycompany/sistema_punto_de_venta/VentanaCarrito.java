@@ -1,4 +1,7 @@
 package com.mycompany.sistema_punto_de_venta;
+
+import javax.swing.JFrame;
+
 /*
  * CyberVentana - ventana del carrito
  */
@@ -12,6 +15,7 @@ public class VentanaCarrito extends javax.swing.JFrame {
     public VentanaCarrito() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // Hace que la rueda del ratón desplace más rápido
         scrollItems.getVerticalScrollBar().setUnitIncrement(16);
         cargarCarrito();
@@ -114,10 +118,16 @@ public class VentanaCarrito extends javax.swing.JFrame {
 
         // Totales del resumen
         double total = carrito.calcularTotal();
+        double envtotal;
+        if(total>1500)
+            envtotal=0;
+        else{
+            envtotal=total*0.1;
+        }
         lblTotalProductosValor.setText(String.valueOf(carrito.getProductosCarrito().size()));
-        lblEnvioValor.setText("$0.00");
-        lblSubtotalValor.setText("$" + String.format("%.2f", total));
-        lblTotalValor.setText("$" + String.format("%.2f", total));
+        lblEnvioValor.setText("$" + String.format("%.2f", envtotal));
+        lblSubtotalValor.setText("$" + String.format("%.2f", total+envtotal));
+        lblTotalValor.setText("$" + String.format("%.2f", total+envtotal+total*0.16));
 
         panelItems.revalidate();
         panelItems.repaint();

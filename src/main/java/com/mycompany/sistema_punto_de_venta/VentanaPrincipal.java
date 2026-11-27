@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 /**
  * Ventana principal de CyberVentana.
  */
@@ -34,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.sistema = sistema;
         setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         cargarProductos(Sistema_Punto_de_Venta.productos);
         // Hace que la rueda del ratón desplace más rápido
         scrollProductos.getVerticalScrollBar().setUnitIncrement(16);

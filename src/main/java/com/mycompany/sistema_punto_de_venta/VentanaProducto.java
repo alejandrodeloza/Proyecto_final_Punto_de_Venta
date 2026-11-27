@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ public class VentanaProducto extends javax.swing.JFrame {
     public VentanaProducto() {
         initComponents();
         setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         // Hace que la rueda del ratón desplace más rápido
         scrollProducto.getVerticalScrollBar().setUnitIncrement(16);
     }
@@ -392,7 +394,7 @@ public class VentanaProducto extends javax.swing.JFrame {
         lblPrecio.setText("$" + String.format("%.2f", p.getPrecio()));
         lblDisponibles.setText("Disponibles: " + p.getStock());
         // Si tu clase Producto tiene descripción, descomenta la siguiente línea:
-        // txaDescripcion.setText(p.getDescripcion());
+        txaDescripcion.setText(p.getDescripcion());
         ImageIcon icono = null;
         if (p.getImagen() != null && !p.getImagen().isEmpty()) {
             icono = cargarImagen(p.getImagen(), 400, 380);
