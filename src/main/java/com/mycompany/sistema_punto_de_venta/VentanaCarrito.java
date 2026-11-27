@@ -2,6 +2,7 @@ package com.mycompany.sistema_punto_de_venta;
 
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /*
  * CyberVentana - ventana del carrito
@@ -493,11 +494,14 @@ public class VentanaCarrito extends javax.swing.JFrame {
     
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        if(Sistema_Punto_de_Venta.clienteActual.getCarrito().getProductosCarrito()==null)
+            JOptionPane.showMessageDialog(this, "No tiene productos");
+        else{
         String fecha = new Date().toString();
         String clienteid = Sistema_Punto_de_Venta.clienteActual.getId();
         Sistema_Punto_de_Venta.registrarPedido(clienteid, fecha , "", total);
         new VentanaPago().setVisible(true);
-        this.dispose();
+        this.dispose();}
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

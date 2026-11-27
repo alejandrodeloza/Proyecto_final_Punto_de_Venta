@@ -35,6 +35,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Constructor principal que recibe el sistema compartido
     public VentanaPrincipal(Sistema_Punto_de_Venta sistema) {
         initComponents();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowActivated(java.awt.event.WindowEvent e) {
+                actualizarBotonSesion();
+            }
+        });
+        actualizarBotonSesion();
         this.sistema = sistema;
         setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -47,6 +54,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void guardarUsuarioActivo(Usuario u) {
         this.usuarioActivo = u;
         btnIniciarSesion.setText("Mi Cuenta");
+    }
+
+    public void actualizarBotonSesion() {
+        usuarioActivo = Sistema_Punto_de_Venta.clienteActual;
+        btnIniciarSesion.setText(usuarioActivo != null ? "Mi Cuenta" : "Iniciar sesión");
     }
 
     @SuppressWarnings("unchecked")
@@ -367,8 +379,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             return;
         } else {
             for (Producto p : Sistema_Punto_de_Venta.productos) {
-                if (p.getNombre().toLowerCase().contains(txtBuscar.getText().toLowerCase()))
+                if (p.getNombre().toLowerCase().contains(txtBuscar.getText().toLowerCase())) {
                     productos_busqueda.add(p);
+                }
             }
         }
 

@@ -18,7 +18,6 @@ public class Sistema_Punto_de_Venta {
 
     public static void main(String[] args) {
         GestorCSV.cargarTodo();
-        
         GestorCSV.guardarTodo();
         new VentanaPrincipal().setVisible(true);
     }
@@ -144,7 +143,7 @@ public class Sistema_Punto_de_Venta {
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%#*?&.])[A-Za-z\\d@$!%*?&.]{8,}$";
         return Pattern.matches(regex, contraseña);
     }
-    
+
     // Método para nuevo pedido
     public static void registrarPedido(String Idcliente, String fecha, String metodo, double total) {
         // Variables locales
@@ -163,7 +162,7 @@ public class Sistema_Punto_de_Venta {
             Idnum = Integer.parseInt(Idtemp);
             Idnum++;
         }
-        
+
         Idtemp = "E" + Integer.toString(Idnum);
         pedidos.add(new Pedido(Idtemp, Idcliente, fecha, metodo, total));
     }

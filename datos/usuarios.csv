@@ -1,3 +1,4 @@
 ﻿tipo,id,correo,nombre,telefono,contraseña,imagenPerfil,direcciones
 CLIENTE,C0,pepecliente@gmail.com,Pepe,3780124579,pepe@A123C,/Perfil_1.png,
 ADMIN,A0,pepe@gmail.com,Pepe,3780124569,pepe@A123,/Perfil_1.png,
+CLIENTE,C1,alej@gmail.com,Ale,3781459620,Coco@1234,Perfil_3.png,
