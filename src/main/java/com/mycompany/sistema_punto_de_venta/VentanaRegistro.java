@@ -53,6 +53,8 @@ public class VentanaRegistro extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         Fondo.setBackground(new java.awt.Color(30, 42, 55));
+        Fondo.setMinimumSize(new java.awt.Dimension(830, 546));
+        Fondo.setRequestFocusEnabled(false);
         Fondo.setLayout(new java.awt.GridBagLayout());
 
         Textos.setBackground(new java.awt.Color(30, 42, 55));
@@ -134,13 +136,13 @@ public class VentanaRegistro extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jTextField2)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(TextosLayout.createSequentialGroup()
                 .addGap(352, 352, 352)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TextosLayout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+                .addContainerGap(174, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(188, 188, 188))
         );
@@ -171,7 +173,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
                     .addComponent(jTextField4))
                 .addGap(50, 50, 50)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Fondo.add(Textos, new java.awt.GridBagConstraints());
